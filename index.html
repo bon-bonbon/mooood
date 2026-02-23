@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mooood.com</title>
+  <meta name="description" content="Billbords — kreativa kampanjkoncept för out-of-home media">
+  <link rel="icon" href="https://assets.mooood.com/brand/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .scene {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bg {
+      position: absolute;
+      inset: -20px;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(40, 35, 30, 0.5) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(25, 30, 40, 0.4) 0%, transparent 60%),
+        linear-gradient(160deg, #0d0d0d 0%, #0a0a0a 40%, #111 100%);
+      filter: url(#grain);
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    .title {
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 8vw, 6rem);
+      letter-spacing: 0.25em;
+      text-transform: lowercase;
+      color: #f5f5f5;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+      user-select: none;
+    }
+
+    .title span {
+      font-weight: 400;
+      color: rgba(245, 245, 245, 0.4);
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    svg.grain-svg {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <svg class="grain-svg">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.08"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" operator="in"/>
+    </filter>
+  </svg>
+
+  <div class="scene">
+    <div class="bg" id="bg"></div>
+    <div class="title">mooood<span>.com</span></div>
+  </div>
+
+  <script>
+    (function() {
+      const bg = document.getElementById('bg');
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+      let ticking = false;
+
+      document.addEventListener('mousemove', function(e) {
+        targetX = (e.clientX / window.innerWidth - 0.5) * 20;
+        targetY = (e.clientY / window.innerHeight - 0.5) * 20;
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateBg);
+        }
+      });
+
+      function updateBg() {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        bg.style.transform = 'translate(' + currentX + 'px, ' + currentY + 'px)';
+        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+          requestAnimationFrame(updateBg);
+        } else {
+          ticking = false;
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>
