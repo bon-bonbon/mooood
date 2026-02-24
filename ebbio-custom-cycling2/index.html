@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+  ============================================================
+  TEMPLATE MANIFEST — template1
+  ============================================================
+  Bon: Läs detta manifest för att förstå vad denna template
+  kräver. Scanna sedan alla "BON:"-kommentarer i HTML:en
+  för exakt placering. Duplicera hela mappen till
+  pages/[kund]-[koncept]/ innan du börjar redigera.
+
+  TEMPLATE:    template1
+  VERSION:     1.0
+  SLUG:        BON ersätter "SLUG" i alla URL:er med kampanjens slug
+
+  ASSETS ATT PRODUCERA:
+  ─────────────────────────────────────────────────────────
+  Sektion       Typ          Antal   Verktyg           Format
+  ─────────────────────────────────────────────────────────
+  meta          og:image     1       (hero-bild)       WEBP
+  koncept       illustration 1       Recraft V4        SVG/PNG/WEBP
+  video         video+poster 1       Kling             MP4+WEBP
+  galleri       bild+text    4*      Nano Banana Pro   WEBP
+  ─────────────────────────────────────────────────────────
+  * = standardantal för galleri, Bon kan lägga till eller ta bort galleri-kort
+
+  VIDEO-STANDARD: EN film på ~20 sek (4 klipp extend:ade via Kling).
+  Fokus på kvalitet, inte kvantitet. Följ skills/video-prompting/SKILL.md.
+
+  TEXTER ATT FYLLA I:
+  ─────────────────────────────────────────────────────────
+  Plats                     Innehåll
+  ─────────────────────────────────────────────────────────
+  <title>                   Kampanjnamn — Kundnamn | Billbords
+  meta description          Kort kampanjbeskrivning
+  hero-tagline              T.ex. "Presents" eller kundnamn
+  koncept h2                Kampanjtitel/tagline
+  koncept p                 Konceptbeskrivning (1-2 meningar)
+  video caption             Filmens titel (kort, slagkraftig)
+  gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
+  gallery-card h3 (per kort) Budskapets rubrik
+  gallery-card p (per kort)  Budskapets beskrivning (1-2 meningar)
+  budskap blockquote        Kampanjens kärnbudskap
+  budskap målgrupp          Primär målgrupp
+  budskap tonalitet         Ton och känsla
+  budskap placeringar       Föreslagna OOH-placeringar
+  ─────────────────────────────────────────────────────────
+
+  R2 URL-MÖNSTER:
+  assets.mooood.com/kampanjer/[SLUG]/[filnamn]
+
+  FASTA ELEMENT (ändra INTE):
+  - Billbords ögat-zoom (hero-intro)
+  - Billbords logotyp i hero-reveal
+  - Sektionsrubrik "In full sight" (video)
+  - Footer med Billbords-branding
+  ============================================================
+  -->
+
+  <!-- BON: Byt title och description -->
+  <title>Made for One — EBBIO Custom Cycling Shoes | Billbords</title>
+  <meta name="description" content="EBBIO combines generations of shoemaking tradition with AI and 3D printing — creating a shoe that has never been made before.">
+  <meta property="og:title" content="Made for One — EBBIO Custom Cycling Shoes | Billbords">
+  <meta property="og:description" content="EBBIO combines generations of shoemaking tradition with AI and 3D printing — creating a shoe that has never been made before.">
+  <!-- BON: Byt og:image till kampanjens hero -->
+  <meta property="og:image" content="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/hero.webp">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="https://assets.mooood.com/brand/favicon.ico">
+
+  <style>
+    /* ========================================
+       UNICA77 FONTS
+       ======================================== */
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-ExtraBlack.otf') format('opentype');
+      font-weight: 950;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('../../fonts/Unica77/Unica77LL-Light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ========================================
+       VARIABLER
+       ======================================== */
+    :root {
+      /* Billbords colours */
+      --blue:     #3D64FD;
+      --black:    #000000;
+      --white:    #FFFFFF;
+      --offwhite: #FCFAEE;
+      --brown:    #745C64;
+      --pink:     #FFBBF6;
+
+      /* Semantic mappings */
+      --bg-dark:    var(--black);
+      --bg-light:   var(--offwhite);
+      --text-light: var(--white);
+      --text-dark:  var(--black);
+      --accent:     var(--blue);
+      --text-muted: rgba(255,255,255,0.45);
+
+      --font: 'Unica77', -apple-system, Helvetica Neue, Arial, sans-serif;
+      --max-text:  800px;
+      --max-media: 1000px;
+      --section-pad: clamp(100px, 14vw, 180px);
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text-dark);
+      background: var(--bg-dark);
+      overflow-x: hidden;
+    }
+
+    img, video {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ========================================
+       REVEAL ANIMATIONS
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ========================================
+       1. HERO — ZOOM INTRO
+       ======================================== */
+
+    /* The pinned scroll container — tall enough to drive the animation */
+    .hero-pin {
+      position: relative;
+      height: 250vh; /* scroll distance for the animation */
+    }
+
+    /* Sticky viewport that stays fixed during scroll */
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    /* The eye image — starts small, zooms to fill */
+    .hero-eye {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 38vmin;
+      height: 38vmin;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+      will-change: transform;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .hero-eye img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* Radial black vignette — grows from the pupil outward */
+    .hero-radial-fade {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      /* starts fully transparent, JS will animate the gradient stop */
+      background: radial-gradient(circle at center, #000 0%, transparent 0%);
+      pointer-events: none;
+    }
+
+    /* Logo + tagline that fades in at end of zoom */
+    .hero-reveal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero-reveal img {
+      width: clamp(160px, 28vw, 280px);
+      margin-bottom: 20px;
+    }
+
+    .hero-reveal .hero-tagline {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(252, 250, 238, 0.5);
+    }
+
+    /* Scroll hint — fades out as soon as scroll starts */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2.5s ease-in-out infinite;
+      transition: opacity 0.4s ease;
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========================================
+       SECTION LABEL (global overrubrik)
+       ======================================== */
+    .section-label {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* ========================================
+       2. KONCEPT
+       ======================================== */
+    .koncept {
+      background: var(--bg-light);
+      padding: var(--section-pad) 24px;
+    }
+
+    .koncept-inner {
+      max-width: var(--max-text);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .koncept-text .section-label {
+      color: var(--black);
+    }
+
+    .koncept-text h2 {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--black);
+    }
+
+    .koncept-text p {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #444;
+    }
+
+    .koncept-graphic {
+      display: flex;
+      justify-content: center;
+    }
+
+    .koncept-graphic img {
+      max-width: 100%;
+      max-height: 360px;
+    }
+
+    @media (max-width: 768px) {
+      .koncept-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .koncept-graphic {
+        order: -1;
+      }
+    }
+
+    /* ========================================
+       3. VIDEO
+       ======================================== */
+    .video-section {
+      background: var(--black);
+      color: var(--text-light);
+      padding: var(--section-pad) 24px;
+    }
+
+    .video-section .section-header {
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+
+    .video-section .section-label {
+      color: var(--white);
+    }
+
+    .video-section h2 {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .video-block {
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .video-block video {
+      width: 100%;
+      border-radius: 2px;
+      background: #111;
+    }
+
+    .video-block .video-caption {
+      margin-top: 14px;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ========================================
+       4. BILDGALLERI
+       ======================================== */
+    .gallery-section {
+      background: var(--offwhite);
+      padding: var(--section-pad) 24px;
+    }
+
+    .gallery-section .section-header {
+      max-width: var(--max-media);
+      margin: 0 auto 60px;
+    }
+
+    .gallery-section .section-label {
+      color: var(--black);
+    }
+
+    .gallery-section h2 {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .gallery {
+      max-width: var(--max-media);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .gallery-card h3 {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .gallery-card p {
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================================
+       LIGHTBOX
+       ======================================== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.93);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    /* ========================================
+       5. BUDSKAP
+       ======================================== */
+    .budskap {
+      background: var(--blue);
+      color: var(--white);
+      padding: var(--section-pad) 24px;
+    }
+
+    .budskap-inner {
+      max-width: var(--max-text);
+      margin: 0 auto;
+    }
+
+    .budskap .section-label {
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .budskap blockquote {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      border-left: 4px solid var(--white);
+      padding-left: 28px;
+      margin-bottom: 64px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .meta strong {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 8px;
+    }
+
+    .meta p {
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .meta {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* ========================================
+       6. FOOTER
+       ======================================== */
+    .site-footer {
+      background: var(--black);
+      color: var(--text-light);
+      padding: 80px 24px 40px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      max-width: 140px;
+      margin: 0 auto 20px;
+      opacity: 0.9;
+    }
+
+    .footer-tagline {
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 40px;
+    }
+
+    .footer-powered {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-powered a {
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+    }
+
+    /* ========================================
+       SVG GRAIN FILTER
+       ======================================== */
+    .grain-svg {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Grain filter for hero -->
+  <svg class="grain-svg" aria-hidden="true">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.06"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" operator="in"/>
+    </filter>
+  </svg>
+
+
+  <!-- ==========================================
+       1. HERO — ZOOM INTRO
+       ========================================== -->
+  <div class="hero-pin" id="heroPin">
+    <div class="hero-sticky" id="heroSticky">
+
+      <!-- The eye -->
+      <div class="hero-eye" id="heroEye">
+        <img src="../../images/billbords_ogat_version1_highres_2000x2000px.png" alt="">
+      </div>
+
+      <!-- Radial black fade from pupil center -->
+      <div class="hero-radial-fade" id="heroRadialFade"></div>
+
+      <!-- Logo + tagline — revealed at end of zoom -->
+      <div class="hero-reveal" id="heroReveal">
+        <img src="../../logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
+        <!-- BON: Byt undertext -->
+        <p class="hero-tagline">EBBIO Custom Cycling Shoes</p>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-indicator" id="scrollHint" aria-hidden="true">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       2. KONCEPT
+       ========================================== -->
+  <section class="koncept">
+    <div class="koncept-inner">
+      <div class="koncept-text reveal">
+        <span class="section-label">Koncept</span>
+        <!-- BON: Byt till din kampanjtitel/tagline -->
+        <h2>Made for one.</h2>
+        <!-- BON: Byt till en kort beskrivning av kampanjens kärnkoncept och kreativa idé (1–2 meningar) -->
+        <p>EBBIO combines generations of shoemaking tradition with tomorrow's AI and 3D printing technology — creating a shoe that has never been made before. Your foot. Your last. Your freedom.</p>
+      </div>
+      <div class="koncept-graphic reveal-scale" style="transition-delay: 0.2s">
+        <!-- BON: Byt till din konceptillustration. Kan vara SVG, PNG eller WEBP. -->
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/koncept-illustration.webp" alt="EBBIO — Craft meets precision">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       3. VIDEO
+       ========================================== -->
+  <section class="video-section">
+    <div class="section-header reveal">
+      <span class="section-label">Film</span>
+      <!-- NOT: Rubriken "In full sight" är fast och ska inte ändras -->
+      <h2>In full sight</h2>
+    </div>
+
+    <!-- VIDEO — EN film ~20 sek, genererad med Kling extend_video -->
+    <div class="video-block reveal">
+      <!-- BON: Byt src till kampanjfilmen (MP4) och poster till en stillbild (WEBP/PNG) -->
+      <video controls poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/ebbio2-video-ref.png" preload="metadata">
+        <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/film.mp4" type="video/mp4">
+      </video>
+      <p class="video-caption">Freedom in every millimeter</p>
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       4. BILDGALLERI
+       ========================================== -->
+  <section class="gallery-section">
+    <div class="section-header reveal">
+      <span class="section-label">Budskap</span>
+      <!-- BON: Skriv ett kort, kärnfullt kampanjbudskap — slagkraftigt och kampanjspecifikt. Max 5-7 ord. Ska slå hårt. -->
+      <h2>One foot. No compromise.</h2>
+    </div>
+
+    <!-- BON: Fyll i de fyra korten med dina budskap. Bild kan vara foto eller illustration – välj det du skapat. -->
+    <!-- BON: Lägg till eller ta bort kort efter behov genom att kopiera ett gallery-card-block -->
+    <div class="gallery">
+
+      <div class="gallery-card reveal">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/ebbio2-img1-hands.png" alt="Crafted by hand" loading="lazy">
+        <h3>Crafted by hand</h3>
+        <p>Skilled shoemakers stitch every upper by hand — the precision and care that only human hands can deliver.</p>
+      </div>
+
+      <div class="gallery-card reveal">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/ebbio2-img2-scan.png" alt="Your foot. Your last." loading="lazy">
+        <h3>Your foot. Your last.</h3>
+        <p>Upload photos and measurements. Our AI creates a unique 3D last mapped to your exact foot — down to the millimeter.</p>
+      </div>
+
+      <div class="gallery-card reveal">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/ebbio2-img3-carbon.png" alt="Carbon in every millimeter" loading="lazy">
+        <h3>Carbon in every millimeter</h3>
+        <p>The outsole is 3D-printed in carbon with geometric precision — stiffness and weight optimized for your body and your power.</p>
+      </div>
+
+      <div class="gallery-card reveal">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-custom-cycling2/ebbio2-img4-shoe.png" alt="Freedom starts at the foot" loading="lazy">
+        <h3>Freedom starts at the foot</h3>
+        <p>The result is a shoe that exists only for you — and a feeling of freedom and power you have never experienced before.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       5. BUDSKAP
+       ========================================== -->
+  <section class="budskap">
+    <div class="budskap-inner">
+      <span class="section-label reveal">Kampanj</span>
+      <!-- BON: Byt till din kampanjtitel eller kärnbudskap -->
+      <blockquote class="reveal-scale">A shoe that has never been made before — for a cyclist who never settles for close enough.</blockquote>
+
+      <div class="meta">
+        <div class="reveal">
+          <strong>Audience</strong>
+          <p>Serious and semi-professional cyclists, 28–50 years old, who invest in equipment and understand the value of precision and craftsmanship.</p>
+        </div>
+        <div class="reveal">
+          <strong>Tonality</strong>
+          <p>Confident and technical with a warm core. Premium without arrogance — freedom, nature and precision in the same breath.</p>
+        </div>
+        <div class="reveal">
+          <strong>Placements</strong>
+          <p>DOOH along cycling routes and in sport centres. Digital cycling media (Velo, CyclingTips). Instagram and YouTube pre-roll.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       6. FOOTER
+       ========================================== -->
+  <!-- NOT: Footern ska inte ändras -->
+  <footer class="site-footer">
+    <div class="reveal">
+      <img class="footer-logo" src="../../logos/billbords_logotype_white_rgb.png" alt="Billbords">
+      <p class="footer-tagline">Billbords — Out-of-Home Media</p>
+    </div>
+    <p class="footer-powered">Powered by <a href="https://mooood.com">mooood.com</a></p>
+  </footer>
+
+
+  <!-- ==========================================
+       LIGHTBOX
+       ========================================== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Stäng">&times;</button>
+    <img src="" alt="">
+  </div>
+
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------
+         Intersection Observer — reveal animations
+         ------------------------------------------ */
+      var revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach(function (el) { observer.observe(el); });
+
+      /* ------------------------------------------
+         Gallery — stagger animation
+         ------------------------------------------ */
+      var galleryImgs = document.querySelectorAll('.gallery .reveal');
+      galleryImgs.forEach(function (img, i) {
+        img.style.transitionDelay = (i * 100) + 'ms';
+      });
+
+      /* ------------------------------------------
+         Meta items — stagger animation
+         ------------------------------------------ */
+      var metaItems = document.querySelectorAll('.meta .reveal');
+      metaItems.forEach(function (item, i) {
+        item.style.transitionDelay = (i * 150 + 200) + 'ms';
+      });
+
+      /* ------------------------------------------
+         Hero zoom animation (scroll-driven)
+         ------------------------------------------ */
+      var heroPin        = document.getElementById('heroPin');
+      var heroEye        = document.getElementById('heroEye');
+      var heroReveal     = document.getElementById('heroReveal');
+      var heroRadialFade = document.getElementById('heroRadialFade');
+      var scrollHint     = document.getElementById('scrollHint');
+      var ticking        = false;
+
+      function updateHero() {
+        var pinH      = heroPin.offsetHeight;
+        var vh        = window.innerHeight;
+        var scrollMax = pinH - vh;
+        var scrollY   = window.pageYOffset;
+        var progress  = Math.min(Math.max(scrollY / scrollMax, 0), 1); // 0 → 1
+
+        // --- Eye scale: zooms during 0 → 20% of scroll ---
+        var zoomProgress = Math.min(progress / 0.20, 1);
+        var scale = 1 + zoomProgress * zoomProgress * 14; // max ~15×
+        heroEye.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
+
+        // --- Radial black fade: starts at 10%, fully black at 30% ---
+        var fadeStart = 0.10;
+        var fadeEnd   = 0.30;
+        var fadeProgress = Math.min(Math.max((progress - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+        var eased = fadeProgress * fadeProgress;
+        var innerStop = Math.round(eased * 45);
+        var outerStop = Math.round(10 + eased * 90);
+        heroRadialFade.style.background =
+          'radial-gradient(circle at center, #000 ' + innerStop + '%, transparent ' + outerStop + '%)';
+
+        // --- Scroll hint fades out immediately on scroll ---
+        scrollHint.style.opacity = Math.max(0, 1 - progress * 15);
+
+        // --- Logo/tagline fades in during 32–50% of scroll ---
+        var revealProgress = Math.max(0, (progress - 0.32) / 0.18);
+        heroReveal.style.opacity = revealProgress;
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateHero);
+        }
+      }, { passive: true });
+
+      updateHero(); // init on load
+
+      /* ------------------------------------------
+         Lightbox
+         ------------------------------------------ */
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = lightbox.querySelector('img');
+
+      document.querySelectorAll('.gallery img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          lightboxImg.src = this.src;
+          lightboxImg.alt = this.alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
