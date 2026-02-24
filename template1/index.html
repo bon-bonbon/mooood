@@ -23,10 +23,13 @@
   ─────────────────────────────────────────────────────────
   meta          og:image     1       (hero-bild)       WEBP
   koncept       illustration 1       Recraft V4        SVG/PNG/WEBP
-  video         video+poster 2*      Kling/Veo         MP4+WEBP
+  video         video+poster 1       Kling             MP4+WEBP
   galleri       bild+text    4*      Nano Banana Pro   WEBP
   ─────────────────────────────────────────────────────────
-  * = standardantal, Bon kan lägga till eller ta bort
+  * = standardantal för galleri, Bon kan lägga till eller ta bort galleri-kort
+
+  VIDEO-STANDARD: EN film på ~20 sek (4 klipp extend:ade via Kling).
+  Fokus på kvalitet, inte kvantitet. Följ skills/video-prompting/SKILL.md.
 
   TEXTER ATT FYLLA I:
   ─────────────────────────────────────────────────────────
@@ -37,7 +40,8 @@
   hero-tagline              T.ex. "Presents" eller kundnamn
   koncept h2                Kampanjtitel/tagline
   koncept p                 Konceptbeskrivning (1-2 meningar)
-  video-caption (per video) Videotitel
+  video caption             Filmens titel (kort, slagkraftig)
+  gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
   gallery-card h3 (per kort) Budskapets rubrik
   gallery-card p (per kort)  Budskapets beskrivning (1-2 meningar)
   budskap blockquote        Kampanjens kärnbudskap
@@ -53,7 +57,6 @@
   - Billbords ögat-zoom (hero-intro)
   - Billbords logotyp i hero-reveal
   - Sektionsrubrik "In full sight" (video)
-  - Sektionsrubrik "The message that moves people" (galleri)
   - Footer med Billbords-branding
   ============================================================
   -->
@@ -733,27 +736,15 @@
       <h2>In full sight</h2>
     </div>
 
-    <!-- VIDEO 1 -->
+    <!-- VIDEO — EN film ~20 sek, genererad med Kling extend_video -->
     <div class="video-block reveal">
-      <!-- BON: Byt src till din videofil och poster till en stillbild från videon -->
-      <video controls poster="https://assets.mooood.com/kampanjer/SLUG/video1-poster.webp" preload="metadata">
-        <source src="https://assets.mooood.com/kampanjer/SLUG/video1.mp4" type="video/mp4">
+      <!-- BON: Byt src till kampanjfilmen (MP4) och poster till en stillbild (WEBP/PNG) -->
+      <video controls poster="https://assets.mooood.com/kampanjer/SLUG/film-poster.webp" preload="metadata">
+        <source src="https://assets.mooood.com/kampanjer/SLUG/film.mp4" type="video/mp4">
       </video>
-      <!-- BON: Byt till videons titel -->
-      <p class="video-caption">The Opening</p>
+      <!-- BON: Kort, slagkraftig filmtitel — max 3-4 ord -->
+      <p class="video-caption">The Film</p>
     </div>
-
-    <!-- VIDEO 2 -->
-    <div class="video-block reveal">
-      <!-- BON: Byt src till din videofil och poster till en stillbild från videon -->
-      <video controls poster="https://assets.mooood.com/kampanjer/SLUG/video2-poster.webp" preload="metadata">
-        <source src="https://assets.mooood.com/kampanjer/SLUG/video2.mp4" type="video/mp4">
-      </video>
-      <!-- BON: Byt till videons titel -->
-      <p class="video-caption">The Reveal</p>
-    </div>
-
-    <!-- BON: Lägg till fler video-block vid behov genom att kopiera ett video-block ovan -->
   </section>
 
 
