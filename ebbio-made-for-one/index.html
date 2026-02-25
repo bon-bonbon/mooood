@@ -468,39 +468,66 @@
     .gallery {
       max-width: var(--max-media);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
     }
 
-    .gallery-card img {
+    .gallery-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .gallery-card:nth-child(even) .gallery-card-img {
+      order: 2;
+    }
+
+    .gallery-card:nth-child(even) .gallery-card-text {
+      order: 1;
+    }
+
+    .gallery-card-img img {
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 2px;
-      margin-bottom: 16px;
+    }
+
+    .gallery-card-text {
+      padding: 20px 0;
     }
 
     .gallery-card h3 {
       font-family: var(--font);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
       text-transform: uppercase;
       color: var(--black);
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
 
     .gallery-card p {
       font-weight: 400;
-      font-size: 0.9rem;
-      line-height: 1.65;
+      font-size: 1rem;
+      line-height: 1.75;
       color: #555;
+      max-width: 44ch;
     }
 
     @media (max-width: 768px) {
-      .gallery {
+      .gallery-card {
         grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .gallery-card:nth-child(even) .gallery-card-img {
+        order: 0;
+      }
+      .gallery-card:nth-child(even) .gallery-card-text {
+        order: 0;
       }
     }
 
@@ -766,39 +793,43 @@
     <div class="gallery">
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration (WEBP rekommenderas) -->
-        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img1-hantverk.webp" alt="Made by hand." loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Made by hand.</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Every EBBIO shoe is shaped by a craftsman who has spent decades learning to read a foot. No machine decides your fit.</p>
+        <div class="gallery-card-img">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img1-hantverk.webp" alt="Made by hand." loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <h3>Made by hand.</h3>
+          <p>Every EBBIO shoe is shaped by a craftsman who has spent decades learning to read a foot. No machine decides your fit. Each pair takes over 40 hours to complete — because rushing a shoe made for one person isn't possible.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img2-scanning.webp" alt="Mapped to the millimeter." loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Mapped to the millimeter.</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>2,400 data points. One foot scan. The blueprint for a last built only for you.</p>
+        <div class="gallery-card-img">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img2-scanning.webp" alt="Mapped to the millimeter." loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <h3>Mapped to the millimeter.</h3>
+          <p>2,400 data points. One foot scan. The blueprint for a last built only for you. We measure what other brands ignore — arch height, metatarsal width, heel taper — and build every millimeter around your specific anatomy.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img3-carbon.webp" alt="Carbon that disappears." loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Carbon that disappears.</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Matte carbon sole, Boa precision closure, hand-stitched leather — built to vanish into your ride.</p>
+        <div class="gallery-card-img">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img3-carbon.webp" alt="Carbon that disappears." loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <h3>Carbon that disappears.</h3>
+          <p>Matte carbon fiber sole. Boa precision closure. Hand-stitched leather upper. Every material chosen to transfer power without interference — so all you feel is the road, and nothing else.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img4-aerial.webp" alt="Yours. Completely." loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Yours. Completely.</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>No two EBBIO shoes are the same. Because no two riders are the same.</p>
+        <div class="gallery-card-img">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/ebbio-made-for-one/img4-aerial.webp" alt="Yours. Completely." loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <h3>Yours. Completely.</h3>
+          <p>No two EBBIO shoes are the same. Because no two riders are the same. Your last is archived — if you ever need a replacement pair, we build from the exact same blueprint. A shoe made once, for you, forever.</p>
+        </div>
       </div>
 
     </div>
