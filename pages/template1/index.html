@@ -43,7 +43,7 @@
   hero-tagline              T.ex. "Presents" eller kundnamn
   koncept h2                Kampanjtitel/tagline
   koncept p                 Konceptbeskrivning (1-2 meningar)
-  video caption             Filmens titel (kort, slagkraftig)
+  video h2                  Slagkraftig kampanjrubrik för filmsektionen — kort, kärnfull, kampanjspecifik
   gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
   gallery-card h3 (per kort) Budskapets rubrik
   gallery-card p (per kort)  Budskapets beskrivning (2-4 meningar — layouten ger plats för mer text)
@@ -59,7 +59,7 @@
   FASTA ELEMENT (ändra INTE):
   - Billbords ögat-zoom (hero-intro)
   - Billbords logotyp i hero-reveal
-  - Sektionsrubrik "In full sight" (video)
+  - Sektionslabel "Film" (video)
   - Footer med Billbords-branding
   ============================================================
   -->
@@ -762,18 +762,16 @@
   <section class="video-section">
     <div class="section-header reveal">
       <span class="section-label">Film</span>
-      <!-- NOT: Rubriken "In full sight" är fast och ska inte ändras -->
-      <h2>In full sight</h2>
+      <!-- BON: Kort, slagkraftig kampanjrubrik — max 4-6 ord, kampanjspecifik, ska slå hårt -->
+      <h2>Kampanjrubrik film</h2>
     </div>
 
-    <!-- VIDEO — EN film ~20 sek, genererad med Kling extend_video -->
+    <!-- VIDEO — EN film ~20 sek -->
     <div class="video-block reveal">
       <!-- BON: Byt src till kampanjfilmen (MP4) och poster till en stillbild (WEBP/PNG) -->
-      <video controls poster="https://assets.mooood.com/kampanjer/SLUG/film-poster.webp" preload="metadata">
-        <source src="https://assets.mooood.com/kampanjer/SLUG/film.mp4" type="video/mp4">
+      <video controls poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/hero.webp" preload="metadata">
+        <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/film.mp4" type="video/mp4">
       </video>
-      <!-- BON: Kort, slagkraftig filmtitel — max 3-4 ord -->
-      <p class="video-caption">The Film</p>
     </div>
   </section>
 
