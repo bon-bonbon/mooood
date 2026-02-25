@@ -46,7 +46,7 @@
   video caption             Filmens titel (kort, slagkraftig)
   gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
   gallery-card h3 (per kort) Budskapets rubrik
-  gallery-card p (per kort)  Budskapets beskrivning (1-2 meningar)
+  gallery-card p (per kort)  Budskapets beskrivning (2-4 meningar — layouten ger plats för mer text)
   budskap blockquote        Kampanjens kärnbudskap
   budskap målgrupp          Primär målgrupp
   budskap tonalitet         Ton och känsla
@@ -468,39 +468,66 @@
     .gallery {
       max-width: var(--max-media);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 140px;
     }
 
-    .gallery-card img {
+    .gallery-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .gallery-card:nth-child(even) .gallery-card-img {
+      order: 2;
+    }
+
+    .gallery-card:nth-child(even) .gallery-card-text {
+      order: 1;
+    }
+
+    .gallery-card-img img {
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 2px;
-      margin-bottom: 16px;
+    }
+
+    .gallery-card-text {
+      padding: 20px 0;
     }
 
     .gallery-card h3 {
       font-family: var(--font);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
       text-transform: uppercase;
       color: var(--black);
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
 
     .gallery-card p {
       font-weight: 400;
-      font-size: 0.9rem;
-      line-height: 1.65;
+      font-size: 1rem;
+      line-height: 1.75;
       color: #555;
+      max-width: 44ch;
     }
 
     @media (max-width: 768px) {
-      .gallery {
+      .gallery-card {
         grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .gallery-card:nth-child(even) .gallery-card-img {
+        order: 0;
+      }
+      .gallery-card:nth-child(even) .gallery-card-text {
+        order: 0;
       }
     }
 
@@ -766,39 +793,55 @@
     <div class="gallery">
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration (WEBP rekommenderas) -->
-        <img src="https://assets.mooood.com/kampanjer/SLUG/bild1.webp" alt="" loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Rubrik kort 1</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        <div class="gallery-card-img">
+          <!-- BON: Byt till din bild eller illustration (WEBP rekommenderas) -->
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild1.webp" alt="" loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <!-- BON: Byt till kortets rubrik/budskap -->
+          <h3>Rubrik kort 1</h3>
+          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
+          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://assets.mooood.com/kampanjer/SLUG/bild2.webp" alt="" loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Rubrik kort 2</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        <div class="gallery-card-img">
+          <!-- BON: Byt till din bild eller illustration -->
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild2.webp" alt="" loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <!-- BON: Byt till kortets rubrik/budskap -->
+          <h3>Rubrik kort 2</h3>
+          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
+          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://assets.mooood.com/kampanjer/SLUG/bild3.webp" alt="" loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Rubrik kort 3</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        <div class="gallery-card-img">
+          <!-- BON: Byt till din bild eller illustration -->
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild3.webp" alt="" loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <!-- BON: Byt till kortets rubrik/budskap -->
+          <h3>Rubrik kort 3</h3>
+          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
+          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        </div>
       </div>
 
       <div class="gallery-card reveal">
-        <!-- BON: Byt till din bild eller illustration -->
-        <img src="https://assets.mooood.com/kampanjer/SLUG/bild4.webp" alt="" loading="lazy">
-        <!-- BON: Byt till kortets rubrik/budskap -->
-        <h3>Rubrik kort 4</h3>
-        <!-- BON: Byt till en kort beskrivning av budskapet (1–2 meningar) -->
-        <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        <div class="gallery-card-img">
+          <!-- BON: Byt till din bild eller illustration -->
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild4.webp" alt="" loading="lazy">
+        </div>
+        <div class="gallery-card-text">
+          <!-- BON: Byt till kortets rubrik/budskap -->
+          <h3>Rubrik kort 4</h3>
+          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
+          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+        </div>
       </div>
 
     </div>
