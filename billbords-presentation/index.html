@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Billbords — The Standard</title>
+  <meta name="description" content="You're not just buying a company. You're buying a standard. And you're buying it before anyone else does.">
+  <meta property="og:title" content="Billbords — The Standard">
+  <meta property="og:description" content="The only open protocol standardizing how AI agents interact with DOOH infrastructure.">
+  <meta property="og:image" content="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/hero-og.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://assets.mooood.com/brand/favicon.ico">
+
+  <style>
+    /* ===== UNICA77 FONTS ===== */
+    @font-face {
+      font-family: 'Unica77';
+      src: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/brand/Unica77LL-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/brand/Unica77LL-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Unica77';
+      src: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/brand/Unica77LL-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --blue: #3D64FD;
+      --black: #000000;
+      --offwhite: #FCFAEE;
+      --brown: #745C64;
+      --pink: #FFBBF6;
+      --text: #FCFAEE;
+      --muted: rgba(252, 250, 238, 0.45);
+      --border: rgba(252, 250, 238, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Unica77', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== INTRO OVERLAY ===== */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+    #intro-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .intro-logo {
+      width: 80px;
+      height: 80px;
+      animation: introPulse 1.2s ease forwards;
+    }
+    @keyframes introPulse {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      opacity: 0.7;
+    }
+    .nav-logo span {
+      color: var(--blue);
+      opacity: 1;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ===== HERO — FILM ===== */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-video-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.0) 30%,
+        rgba(0,0,0,0.5) 70%,
+        rgba(0,0,0,0.9) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 60px 70px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.2s forwards;
+    }
+    .hero-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.4s forwards;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.6s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      right: 60px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.8s ease 2s forwards;
+    }
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+      animation: scrollPulse 2s ease infinite 2.5s;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    /* ===== STATEMENT SECTION ===== */
+    #statement {
+      padding: 120px 60px;
+      max-width: 100%;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .statement-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .statement-quote {
+      font-size: clamp(24px, 4vw, 48px);
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+    .statement-quote strong {
+      color: var(--blue);
+    }
+    .statement-meta {
+      display: flex;
+      gap: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meta-num {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .meta-num span {
+      color: var(--blue);
+    }
+    .meta-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ===== PILLARS ===== */
+    #pillars {
+      padding: 100px 60px;
+      max-width: 100%;
+      background: #080808;
+    }
+    .pillars-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pillars-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      gap: 40px;
+    }
+    .pillars-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 480px;
+    }
+    .pillars-desc {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.65;
+      padding-top: 8px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .pillar {
+      background: #0e0e0e;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s ease;
+    }
+    .pillar:hover { background: #111; }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--blue);
+      transition: height 0.4s ease;
+    }
+    .pillar:hover::before { height: 100%; }
+
+    .pillar-num {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .pillar-status {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .pillar-status.live {
+      background: rgba(61, 100, 253, 0.15);
+      color: var(--blue);
+      border: 1px solid rgba(61, 100, 253, 0.3);
+    }
+    .pillar-status.concept {
+      background: rgba(116, 92, 100, 0.2);
+      color: var(--brown);
+      border: 1px solid rgba(116, 92, 100, 0.35);
+      color: #b09098;
+    }
+    .pillar-status.mvp {
+      background: rgba(255, 187, 246, 0.1);
+      color: var(--pink);
+      border: 1px solid rgba(255, 187, 246, 0.25);
+    }
+    .pillar-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .pillar-name {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .pillar-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .pillar-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ===== ARDP HIGHLIGHT ===== */
+    #ardp {
+      padding: 100px 60px;
+      max-width: 100%;
+      background: var(--blue);
+    }
+    .ardp-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .ardp-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .ardp-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .ardp-body {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .ardp-analogy {
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 32px;
+    }
+    .ardp-analogy-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+    .ardp-analogy-text {
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .ardp-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ardp-layer {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .ardp-layer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .ardp-layer-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .ardp-layer-text strong {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* ===== CORE MESSAGE ===== */
+    #core-message {
+      padding: 140px 60px;
+      max-width: 100%;
+      background: var(--black);
+      text-align: center;
+    }
+    .core-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .core-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .core-quote {
+      font-size: clamp(22px, 3.5vw, 40px);
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 40px;
+    }
+    .core-quote em {
+      font-style: italic;
+      color: var(--blue);
+    }
+    .core-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--blue);
+      margin: 0 auto 32px;
+    }
+    .core-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .footer-brand span {
+      color: var(--blue);
+    }
+    .footer-note {
+      font-size: 11px;
+      color: rgba(252, 250, 238, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      section, #statement, #pillars, #ardp, #core-message { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 50px; }
+      .scroll-indicator { right: 24px; }
+      .pillars-header { flex-direction: column; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .ardp-inner { grid-template-columns: 1fr; gap: 40px; }
+      .statement-meta { flex-wrap: wrap; gap: 32px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO OVERLAY -->
+  <div id="intro-overlay">
+    <svg class="intro-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="38" stroke="#3D64FD" stroke-width="2" fill="none"/>
+      <circle cx="40" cy="40" r="18" fill="#3D64FD"/>
+      <circle cx="40" cy="40" r="7" fill="#000"/>
+    </svg>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <a href="#" class="nav-logo"><span>Bill</span>bords</a>
+    <ul class="nav-links">
+      <li><a href="#pillars">Strategy</a></li>
+      <li><a href="#ardp">ARDP</a></li>
+      <li><a href="#core-message">The Thesis</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO — FILM ===== -->
+  <section id="hero">
+    <div class="hero-video-wrap">
+      <!-- BON: Byt src till R2 URL för färdig film -->
+      <video
+        autoplay muted loop playsinline
+        poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/film-poster.png"
+        src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/billbords-film.mp4"
+      ></video>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Billbords — Strategic Overview 2026</p>
+      <h1 class="hero-title">The city is changing.<br><em>Before anyone notices.</em></h1>
+      <p class="hero-sub">30–40 MSEK revenue. ~10 MSEK EBITDA. Four strategic pillars. One standard no one else is building.</p>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ===== STATEMENT ===== -->
+  <div id="statement">
+    <div class="statement-inner">
+      <p class="section-label">The Opportunity</p>
+      <p class="statement-quote">
+        Digital Out-of-Home is a <strong>SEK 2B+ Swedish market</strong> — and it's still running on infrastructure that has no idea what AI is. Billbords built the bridge. Profitably. Before anyone asked for it.
+      </p>
+      <div class="statement-meta">
+        <div class="meta-item">
+          <span class="meta-num">30–40<span>M</span></span>
+          <span class="meta-label">SEK Revenue 2026E</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">~10<span>M</span></span>
+          <span class="meta-label">SEK EBITDA 2026E</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">2<span>+</span></span>
+          <span class="meta-label">MCP Servers Live</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-num">0</span>
+          <span class="meta-label">Competing Open Protocols</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PILLARS ===== -->
+  <div id="pillars">
+    <div class="pillars-inner">
+      <div class="pillars-header">
+        <h2 class="pillars-title">Four pillars.<br>One exit thesis.</h2>
+        <p class="pillars-desc">Each layer adds value independently. Together, they form a moat that takes years to replicate — if the window stays open that long.</p>
+      </div>
+
+      <div class="pillars-grid">
+
+        <!-- PILLAR 1 -->
+        <div class="pillar">
+          <p class="pillar-num">Pillar 01</p>
+          <span class="pillar-status live">Live</span>
+          <p class="pillar-name">The Foundation</p>
+          <h3 class="pillar-title">Profitable DOOH.<br>Organic growth.</h3>
+          <p class="pillar-body">
+            A <strong>cash-flow positive DOOH operation</strong> with real customers, real screens, and real revenue. This is the floor — the limited downside any acquirer gets on day one. The business runs, grows, and throws off cash regardless of the upside layers above it.
+          </p>
+        </div>
+
+        <!-- PILLAR 2 -->
+        <div class="pillar">
+          <p class="pillar-num">Pillar 02</p>
+          <span class="pillar-status live">Live</span>
+          <p class="pillar-name">AI Maturity — DOS & Marketing MCP</p>
+          <h3 class="pillar-title">Two MCP servers.<br>Already running.</h3>
+          <p class="pillar-body">
+            <strong>DOS MCP</strong> exposes operational data — screens, scheduling, availability — directly to AI agents. <strong>Marketing MCP</strong> exposes campaign and customer data. Both are live. Both are accessible. Any AI agent can query Billbords' operational state today. This is not a roadmap item.
+          </p>
+        </div>
+
+        <!-- PILLAR 3 -->
+        <div class="pillar">
+          <p class="pillar-num">Pillar 03</p>
+          <span class="pillar-status concept">Concept</span>
+          <p class="pillar-name">Open Brain</p>
+          <h3 class="pillar-title">The digital twin<br>of leadership.</h3>
+          <p class="pillar-body">
+            Every decision framework, operational principle, and institutional insight <strong>codified and exposed via MCP</strong>. The solution to the knowledge transfer problem that kills 60–80% of institutional knowledge within 12 months of acquisition. Open Brain is what makes the people optional without making the organization fragile.
+          </p>
+        </div>
+
+        <!-- PILLAR 4 -->
+        <div class="pillar">
+          <p class="pillar-num">Pillar 04</p>
+          <span class="pillar-status mvp">Needs MVP</span>
+          <p class="pillar-name">ARDP</p>
+          <h3 class="pillar-title">The only open protocol<br>for AI ↔ DOOH.</h3>
+          <p class="pillar-body">
+            <strong>AI-Ready DOOH Protocol</strong> — the only existing open standard for how AI agents interact with out-of-home infrastructure. Open spec, proprietary hub. Two layers: platform adapters (DoohClick, Broadsign) and screen network partners (onboarding without new code). Customers connect via MCP + OAuth 2.1. Think: what HTTP was for the web — for DOOH.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ARDP DEEP DIVE ===== -->
+  <div id="ardp">
+    <div class="ardp-inner">
+      <div>
+        <p class="ardp-label">The Protocol Play</p>
+        <h2 class="ardp-title">ARDP is the infrastructure bet.</h2>
+        <p class="ardp-body">
+          Out-of-Home advertising is moving to programmatic, AI-driven buying — and there is currently no standard for how AI agents talk to DOOH infrastructure. Billbords designed one. Open specification, proprietary hub. Platform adapters at the top, screen networks at the bottom — scalable onboarding at every layer.
+        </p>
+      </div>
+      <div class="ardp-analogy">
+        <p class="ardp-analogy-label">The Analogy</p>
+        <p class="ardp-analogy-text">"Think what HTTP was for the web. That's what ARDP is for DOOH."</p>
+        <div class="ardp-layers">
+          <div class="ardp-layer">
+            <div class="ardp-layer-dot"></div>
+            <p class="ardp-layer-text"><strong>Platform Adapters</strong> — DoohClick, Broadsign and other SSPs/DSPs. Few, technical, high-leverage.</p>
+          </div>
+          <div class="ardp-layer">
+            <div class="ardp-layer-dot"></div>
+            <p class="ardp-layer-text"><strong>Screen Networks</strong> — Any network onboards without new code. Scales without Billbords involvement.</p>
+          </div>
+          <div class="ardp-layer">
+            <div class="ardp-layer-dot"></div>
+            <p class="ardp-layer-text"><strong>AI Agents</strong> — Customers connect via MCP registration + OAuth 2.1 at billbords.com/ardp.</p>
+          </div>
+          <div class="ardp-layer">
+            <div class="ardp-layer-dot"></div>
+            <p class="ardp-layer-text"><strong>Proprietary Hub</strong> — Open spec, but the routing and authentication infrastructure belongs to Billbords.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CORE MESSAGE ===== -->
+  <div id="core-message">
+    <div class="core-inner">
+      <p class="core-label">The Thesis</p>
+      <blockquote class="core-quote">
+        "You're not just buying a company.<br>
+        You're buying a standard.<br>
+        <em>And you're buying it before anyone else does."</em>
+      </blockquote>
+      <div class="core-rule"></div>
+      <p class="core-sub">
+        A profitable DOOH operation. AI infrastructure already running. The only open protocol for the sector. Institutional knowledge that survives the deal. Four layers of value — any one of which justifies a conversation. All four together makes the window feel short.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p class="footer-brand"><span>Bill</span>bords AB · Stockholm</p>
+    <p class="footer-note">Strategic presentation — confidential</p>
+  </footer>
+
+  <script>
+    // Intro overlay
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('intro-overlay').classList.add('fade-out');
+        setTimeout(() => {
+          document.getElementById('intro-overlay').style.display = 'none';
+        }, 900);
+      }, 1600);
+    });
+
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.style.opacity = '1';
+          el.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.pillar, .ardp-analogy').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
