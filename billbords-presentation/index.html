@@ -556,7 +556,6 @@
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       section, #statement, #pillars, #ardp, #core-message { padding: 80px 24px; }
-      .hero-content { padding: 0 24px 50px; }
       .scroll-indicator { right: 24px; }
       .pillars-header { flex-direction: column; }
       .pillars-grid { grid-template-columns: 1fr; }
@@ -565,18 +564,135 @@
       footer { flex-direction: column; gap: 16px; text-align: center; }
       .nav-links { display: none; }
     }
+
+    /* ===== HERO — EYE ZOOM ===== */
+    .grain-svg { position: absolute; width: 0; height: 0; }
+
+    .hero-pin {
+      position: relative;
+      height: 250vh;
+    }
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-eye {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 38vmin;
+      height: 38vmin;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+      will-change: transform;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .hero-eye img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border-radius: 50%;
+    }
+    .hero-radial-fade {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(circle at center, #000 0%, transparent 0%);
+      pointer-events: none;
+    }
+    .hero-reveal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .hero-reveal img {
+      width: clamp(160px, 28vw, 280px);
+      margin-bottom: 20px;
+    }
+    .hero-reveal .hero-tagline {
+      font-family: 'Unica77', -apple-system, Helvetica Neue, Arial, sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(252, 250, 238, 0.5);
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: heroScrollBounce 2.5s ease-in-out infinite;
+      transition: opacity 0.4s ease;
+    }
+    .hero-scroll-hint svg {
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+    }
+    @keyframes heroScrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== FORWARD FUTURE VIDEO SECTION ===== */
+    #forward-future {
+      background: #000;
+      padding: 0;
+    }
+    .ff-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 60px 0;
+    }
+    .ff-video-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      margin-top: 48px;
+    }
+    .ff-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .ff-inner { padding: 80px 24px 0; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- INTRO OVERLAY -->
-  <div id="intro-overlay">
-    <svg class="intro-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="38" stroke="#3D64FD" stroke-width="2" fill="none"/>
-      <circle cx="40" cy="40" r="18" fill="#3D64FD"/>
-      <circle cx="40" cy="40" r="7" fill="#000"/>
-    </svg>
-  </div>
+  <!-- Grain filter -->
+  <svg class="grain-svg" aria-hidden="true">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" operator="in"/>
+    </filter>
+  </svg>
 
   <!-- NAVIGATION -->
   <nav id="nav">
@@ -588,24 +704,43 @@
     </ul>
   </nav>
 
-  <!-- ===== HERO — FILM ===== -->
-  <section id="hero">
-    <div class="hero-video-wrap">
-      <!-- BON: Byt src till R2 URL för färdig film -->
+  <!-- ===== HERO — EYE ZOOM ===== -->
+  <div class="hero-pin" id="heroPin">
+    <div class="hero-sticky" id="heroSticky">
+
+      <div class="hero-eye" id="heroEye">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/brand/billbords-ogat.png" alt="">
+      </div>
+
+      <div class="hero-radial-fade" id="heroRadialFade"></div>
+
+      <div class="hero-reveal" id="heroReveal">
+        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/brand/billbords-logotype-offwhite.png" alt="Billbords">
+        <p class="hero-tagline">Forward. Future.</p>
+      </div>
+
+      <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== FORWARD FUTURE — FILM ===== -->
+  <section id="forward-future">
+    <div class="ff-inner">
+      <p class="section-label">Film</p>
+      <h2 style="font-size: clamp(28px, 4vw, 52px); font-weight:700; letter-spacing:-0.02em; line-height:1.05; max-width:700px;">Forward. Future.</h2>
+      <p style="font-size:15px; color: var(--muted); max-width:520px; line-height:1.65; margin-top:16px;">The standard no one else is building — and why it matters now.</p>
+    </div>
+    <div class="ff-video-wrap">
       <video
-        autoplay muted loop playsinline
-        poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/film-poster.png"
-        src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/billbords-film.mp4"
+        controls
+        playsinline
+        poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/billboard-pov-poster.png"
+        src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/billbords-presentation/Billbords-forward-future-11-mar-2026.mp4"
       ></video>
-    </div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Billbords — Strategic Overview 2026</p>
-      <h1 class="hero-title">The city is changing.<br><em>Before anyone notices.</em></h1>
-      <p class="hero-sub">30–40 MSEK revenue. ~10 MSEK EBITDA. Four strategic pillars. One standard no one else is building.</p>
-    </div>
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      Scroll
     </div>
   </section>
 
@@ -868,24 +1003,51 @@
   </footer>
 
   <script>
-    // Intro overlay
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('intro-overlay').classList.add('fade-out');
-        setTimeout(() => {
-          document.getElementById('intro-overlay').style.display = 'none';
-        }, 900);
-      }, 1600);
-    });
-
-    // Sticky nav
+    // ── Sticky nav ──
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+      nav.classList.toggle('scrolled', window.scrollY > 80);
     });
 
-    // Intersection observer for fade-in
+    // ── Hero eye-zoom (scroll-driven) ──
+    const heroPin        = document.getElementById('heroPin');
+    const heroEye        = document.getElementById('heroEye');
+    const heroReveal     = document.getElementById('heroReveal');
+    const heroRadialFade = document.getElementById('heroRadialFade');
+    const heroScrollHint = document.getElementById('heroScrollHint');
+    let ticking = false;
+
+    function updateHero() {
+      const pinH      = heroPin.offsetHeight;
+      const vh        = window.innerHeight;
+      const scrollMax = pinH - vh;
+      const progress  = Math.min(Math.max(window.pageYOffset / scrollMax, 0), 1);
+
+      // Eye scale: zooms 0→20% of scroll
+      const zoomP = Math.min(progress / 0.20, 1);
+      heroEye.style.transform = `translate(-50%, -50%) scale(${1 + zoomP * zoomP * 14})`;
+
+      // Radial black fade: 10%→30%
+      const fadeP = Math.min(Math.max((progress - 0.10) / 0.20, 0), 1);
+      const eased = fadeP * fadeP;
+      heroRadialFade.style.background =
+        `radial-gradient(circle at center, #000 ${Math.round(eased * 45)}%, transparent ${Math.round(10 + eased * 90)}%)`;
+
+      // Scroll hint fades out immediately
+      heroScrollHint.style.opacity = Math.max(0, 1 - progress * 15);
+
+      // Logo reveal: 32%→50%
+      heroReveal.style.opacity = Math.max(0, (progress - 0.32) / 0.18);
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(updateHero); }
+    }, { passive: true });
+    updateHero();
+
+    // ── Intersection observer for fade-in ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(el => {
         if (el.isIntersecting) {
