@@ -62,8 +62,24 @@
     .reveal { opacity: 0; transition: opacity 0.8s ease; }
     .reveal.visible { opacity: 1; }
 
+    /* ── DATA STALENESS BANNER ─────────────────────────── */
+    .stale-banner {
+      background: #2a1a00;
+      border-bottom: 1px solid #FFB020;
+      padding: 10px clamp(24px, 6vw, 80px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: #FFB020;
+      position: relative;
+      z-index: 100;
+    }
+    .stale-banner strong { font-weight: 700; }
+
     /* ══════════════════════════════════════════════════════
-       HERO ZOOM INTRO (identisk med template1)
+       HERO ZOOM INTRO
     ══════════════════════════════════════════════════════ */
     .hero-pin {
       position: relative;
@@ -489,8 +505,21 @@
 
     .trend-day-1 {
       padding: 40px;
-      border: 1px solid rgba(252,250,238,0.1);
+      border: 1px solid rgba(255,176,32,0.25);
+      background: rgba(255,176,32,0.04);
       text-align: center;
+    }
+    .trend-day-1 .trend-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .trend-day-1 h3 {
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #FFB020;
+      margin-bottom: 12px;
     }
     .trend-day-1 p {
       font-size: 0.85rem;
@@ -535,8 +564,38 @@
     .delta-up   { color: #3DFD7E; }
     .delta-down { color: #FF4D2E; }
 
+    /* Trend snapshot card */
+    .trend-snapshot {
+      border: 1px solid rgba(252,250,238,0.1);
+      padding: 32px 28px;
+      margin-bottom: 2px;
+    }
+    .trend-snapshot-date {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted-w);
+      margin-bottom: 20px;
+    }
+    .trend-snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .tsn-val {
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+      color: var(--offwhite);
+    }
+    .tsn-lbl {
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--muted-w);
+    }
+
     /* ══════════════════════════════════════════════════════
-       6. REKOMMENDATIONER — pink / offwhite
+       6. REKOMMENDATIONER — offwhite bg
     ══════════════════════════════════════════════════════ */
     .section-recs {
       background: var(--offwhite);
@@ -662,10 +721,16 @@
       .trend-grid     { grid-template-columns: repeat(3, 1fr); }
       .prop-card      { grid-template-columns: auto 1fr; }
       .prop-right     { display: none; }
+      .trend-snapshot-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ══ STALE DATA BANNER ════════════════════════════════ -->
+  <div class="stale-banner">
+    ⚠ &nbsp;<strong>OBS: DOS offline vid generering.</strong>&nbsp; Siffrorna är från senast kända data (13 mars). Kan ha förändrats. Bon försöker igen vid nästa körning.
+  </div>
 
   <!-- ══ 0. ZOOM INTRO ═══════════════════════════════════ -->
   <div class="hero-pin" id="heroPin">
@@ -688,27 +753,27 @@
   <!-- ══ 1. HERO ══════════════════════════════════════════ -->
   <section class="hero">
     <img class="hero-img"
-      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png"
-      alt="">
+      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png?v=20260315"
+      alt="Söndagsmorgon i svensk björkskog med gyllene solljus">
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <span class="hero-date" id="hero-date"></span>
       <h1 class="hero-title">God morgon,<br><em>Nikk.</em></h1>
-      <p class="hero-subtitle">Här är din dagliga genomgång av vad som händer i Billbords just nu — och vad du bör prioritera idag.</p>
+      <p class="hero-subtitle">Glad söndag. Data från 13/3 — DOS var offline i natt. Bon försöker på måndag igen. Här är läget som det såg ut senast.</p>
     </div>
   </section>
 
   <!-- ══ 2. INTÄKTER ═══════════════════════════════════════ -->
   <section class="section-revenue">
     <div class="inner">
-      <span class="label label-dark">Intäkter</span>
-      <h2 class="rev-heading reveal">Mars 2026 —<br><span>27.9% av mål</span></h2>
+      <span class="label label-dark">Intäkter · Data 13 mars</span>
+      <h2 class="rev-heading reveal">Mars 2026 —<br><span>27,9% av mål</span></h2>
 
       <div class="rev-grid reveal">
         <div class="rev-cell">
           <div class="rev-cell-label">Stängda deals i mars</div>
           <div class="rev-cell-value accent">661 038 kr</div>
-          <div class="rev-cell-sub">ex. moms · cachad data 13/3</div>
+          <div class="rev-cell-sub">ex. moms · senast känd 13/3</div>
         </div>
         <div class="rev-cell">
           <div class="rev-cell-label">Marsmål</div>
@@ -718,14 +783,14 @@
         <div class="rev-cell">
           <div class="rev-cell-label">Total omsättning 2026</div>
           <div class="rev-cell-value">26,0 Mkr</div>
-          <div class="rev-cell-sub">alla WON deals</div>
+          <div class="rev-cell-sub">alla WON deals t.o.m. 13/3</div>
         </div>
       </div>
 
       <div class="progress-wrap reveal">
         <div class="progress-meta">
-          <span class="progress-meta-label">Framsteg mot marsmålet</span>
-          <span class="progress-meta-pct">27.9%</span>
+          <span class="progress-meta-label">Framsteg mot marsmålet (data 13/3)</span>
+          <span class="progress-meta-pct">27,9%</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill warn" style="width:27.9%"></div>
@@ -737,71 +802,75 @@
   <!-- ══ 3. OFFERTER ══════════════════════════════════════ -->
   <section class="section-proposals">
     <div class="inner">
-      <span class="label label-light">Offerter</span>
-      <h2 class="prop-heading reveal">29 aktiva —<br>agera nu.</h2>
+      <span class="label label-light">Offerter · Data 13 mars</span>
+      <h2 class="prop-heading reveal">29 aktiva —<br>2 löpte ut igår.</h2>
 
       <div class="prop-strip reveal">
         <div class="prop-strip-cell">
-          <div class="prop-strip-num red">24</div>
-          <div class="prop-strip-txt">Utgångna offerter</div>
+          <div class="prop-strip-num red">26+</div>
+          <div class="prop-strip-txt">Utgångna offerter (est.)</div>
         </div>
         <div class="prop-strip-cell">
-          <div class="prop-strip-num amber">4</div>
+          <div class="prop-strip-num amber">2</div>
           <div class="prop-strip-txt">Löper ut denna vecka</div>
         </div>
         <div class="prop-strip-cell">
-          <div class="prop-strip-num green">1</div>
+          <div class="prop-strip-num green">~1</div>
           <div class="prop-strip-txt">OK — gott om tid</div>
         </div>
       </div>
 
       <div class="prop-list reveal">
 
-        <div class="prop-card urgent">
-          <div class="prop-dot dot-red"></div>
-          <div>
-            <div class="prop-name">Halmstads Pantlånekassa</div>
-            <div class="prop-meta">Alex Arvidsson · VIEWED · Kontakt: Peter Martinsson</div>
-          </div>
-          <div class="prop-right">
-            <div class="prop-value">39 990 kr</div>
-            <div class="prop-expires expires-red">Löper ut idag</div>
-          </div>
-        </div>
-
+        <!-- Brinova — löpte ut 14 mars (igår) -->
         <div class="prop-card urgent">
           <div class="prop-dot dot-red"></div>
           <div>
             <div class="prop-name">Brinova offert</div>
-            <div class="prop-meta">Kim Aldén Engström · SENT · ej öppnad</div>
+            <div class="prop-meta">Kim Aldén Engström · SENT · ej öppnad per 13/3 · Löpte ut 14 mars</div>
           </div>
           <div class="prop-right">
             <div class="prop-value">1 027 290 kr</div>
-            <div class="prop-expires expires-red">⚠ LÖPER UT IDAG 14 mars</div>
+            <div class="prop-expires expires-red">UTGÅNGEN sedan igår</div>
           </div>
         </div>
 
+        <!-- Halmstads Pantlånekassa — löpte ut 13 mars -->
+        <div class="prop-card urgent">
+          <div class="prop-dot dot-red"></div>
+          <div>
+            <div class="prop-name">Halmstads Pantlånekassa</div>
+            <div class="prop-meta">Alex Arvidsson · VIEWED · Löpte ut 13 mars</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">39 990 kr</div>
+            <div class="prop-expires expires-red">UTGÅNGEN 2 dagar</div>
+          </div>
+        </div>
+
+        <!-- Bilkompani Sydost — 18 mars, 3 dagar kvar -->
         <div class="prop-card warn">
           <div class="prop-dot dot-amber"></div>
           <div>
             <div class="prop-name">Bilkompani Sydost</div>
-            <div class="prop-meta">Kim Aldén Engström · VIEWED · 4 dagar kvar</div>
+            <div class="prop-meta">Kim Aldén Engström · VIEWED · ca 3 dagar kvar</div>
           </div>
           <div class="prop-right">
             <div class="prop-value">6 990 kr</div>
-            <div class="prop-expires expires-amber">18 mars</div>
+            <div class="prop-expires expires-amber">~18 mars</div>
           </div>
         </div>
 
+        <!-- Kristdemokraterna — 20 mars, 5 dagar kvar -->
         <div class="prop-card warn">
           <div class="prop-dot dot-amber"></div>
           <div>
             <div class="prop-name">Kristdemokraterna Ljungby &amp; Tingsryd</div>
-            <div class="prop-meta">Nikk Matson · VIEWED · Kaj-Mikael Petersson · 6 dagar kvar</div>
+            <div class="prop-meta">Nikk Matson · VIEWED · Kaj-Mikael Petersson · ca 5 dagar kvar</div>
           </div>
           <div class="prop-right">
             <div class="prop-value">69 990 kr</div>
-            <div class="prop-expires expires-amber">20 mars</div>
+            <div class="prop-expires expires-amber">~20 mars</div>
           </div>
         </div>
 
@@ -812,7 +881,7 @@
   <!-- ══ 4. RANKING ════════════════════════════════════════ -->
   <section class="section-ranking">
     <div class="inner">
-      <span class="label label-dark">Säljare</span>
+      <span class="label label-dark">Säljare · Data 13 mars</span>
       <h2 class="rank-heading reveal">Mars 2026 —<br>vem leder?</h2>
 
       <div class="rank-list reveal">
@@ -855,12 +924,26 @@
           </div>
           <div class="rank-right">
             <div class="rank-value">0 kr</div>
-            <div class="rank-budget">av 700 000 · Brinova är nyckeln</div>
+            <div class="rank-budget">av 700 000 · Brinova var nyckeln</div>
           </div>
         </div>
 
         <div class="rank-row">
           <div class="rank-num">4</div>
+          <div>
+            <div class="rank-name">Jesper Carlsson</div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar"><div class="rank-bar-fill" style="width:1%"></div></div>
+            </div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-value">918 kr</div>
+            <div class="rank-budget">Inget marsmål satt</div>
+          </div>
+        </div>
+
+        <div class="rank-row">
+          <div class="rank-num">5</div>
           <div>
             <div class="rank-name">Emelie Svensson</div>
             <div class="rank-bar-wrap">
@@ -884,12 +967,36 @@
       <h2 class="trend-heading reveal">Vad har hänt?</h2>
 
       <div class="trend-day-1 reveal">
+        <div class="trend-icon">📡</div>
+        <h3>DOS offline — trenddata saknas</h3>
         <p>
-          <strong>DOS MCP offline — data cachad från 2026-03-13.</strong><br>
-          Trendanalys pausad. Bon försöker igen vid nästa körning.<br>
-          Referensdata finns från 1 dag — trendgraf aktiveras när minst 2 dagars snapshots finns.
+          Bon kunde inte hämta färsk data den här natten (DOS MCP returnerade 500-fel).<br>
+          <strong>Referensdata finns från 1 dag (13 mars).</strong>
+          Trendgrafen aktiveras automatiskt när minst 2 dagars snapshots finns.<br><br>
+          Det Bon vet sedan 13/3: intäkter 661 tkr, pipeline 3,0 Mkr, 24 utgångna offerter.
+          <br>Bon försöker igen i morgon bitti och fyller på trendkolumnerna.
         </p>
       </div>
+
+      <!-- Snapshot som referens -->
+      <div class="trend-snapshot reveal" style="margin-top: 2px;">
+        <div class="trend-snapshot-date">Senast känd snapshot · 13 mars 2026</div>
+        <div class="trend-snapshot-grid">
+          <div>
+            <div class="tsn-val">661 tkr</div>
+            <div class="tsn-lbl">Intäkter mars (stängda)</div>
+          </div>
+          <div>
+            <div class="tsn-val">3 005 tkr</div>
+            <div class="tsn-lbl">Aktivt pipeline-värde</div>
+          </div>
+          <div>
+            <div class="tsn-val">24</div>
+            <div class="tsn-lbl">Utgångna offerter</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -903,27 +1010,27 @@
 
         <div class="rec-card card-1">
           <div class="rec-num">1</div>
-          <div class="rec-tag">Taktiskt · KRITISKT IDAG · Pengar</div>
-          <div class="rec-title">Ring Kim —<br>Brinova löper ut IDAG</div>
+          <div class="rec-tag">Taktiskt · Pengar · Brådskande</div>
+          <div class="rec-title">Kolla om Brinova<br>landade igår</div>
           <p class="rec-body">
-            Brinova-offerten på <strong>1 027 290 kr</strong> löper ut idag 14 mars
-            och är fortfarande inte öppnad (status SENT). Det är Kims deal — men som VD
-            bör du agera nu. Ring Kim på morgonen. Om hon behöver hjälp att
-            landa den, gå in. Det är den enskilt
-            största offertsumman ni har ute just nu — och den sista chansen.
+            Brinova-offerten på <strong>1 027 290 kr</strong> löpte ut 14 mars och var per 13/3 fortfarande
+            ej öppnad (SENT). Hörde Kim av sig? Vet du resultatet?
+            Om inte — det är söndag, men ett snabbt meddelande till Kim nu
+            kostar inget och kan rädda en stor affär.
+            Ring tidigt på måndag om inget svar.
           </p>
         </div>
 
         <div class="rec-card card-2">
           <div class="rec-num">2</div>
           <div class="rec-tag">Strategiskt · Process</div>
-          <div class="rec-title">24 utgångna offerter<br>är ett process-problem</div>
+          <div class="rec-title">26+ utgångna offerter<br>signalerar ett flödesproblem</div>
           <p class="rec-body">
-            Det är inte ett säljproblem — det är ett uppföljningsproblem.
-            24 offerter på <strong>1,7 Mkr</strong> har löpt ut utan beslut.
-            Kortare giltighetstider. Tydligare uppföljningsrutin.
-            En halvtimmes genomgång med säljarna den här veckan
-            kan vara värt miljoner på lång sikt.
+            Brinova och Pantlånekassa löpte ut sedan sist — nu är estimatet 26+ stycken
+            utan beslut. Det är inte ett säljproblem, det är ett uppföljningsproblem.
+            <strong>Kortare giltighetstider. Tydligare rutin.</strong>
+            En halvtimmes genomgång med säljarna den här veckan kan vara värt
+            miljoner på lång sikt — och det finns inga nya affärer att vänta på.
           </p>
         </div>
 
@@ -938,7 +1045,7 @@
         Tänk på att njuta av <span>resan.</span><br>
         Ha en bra dag, Nikk.
       </h2>
-      <p class="signoff-sub">Bon · 2026-03-14 · cachad data (DOS offline)</p>
+      <p class="signoff-sub">Bon · Söndag 15 mars 2026 · Data cachad 13/3 — DOS offline vid körning</p>
     </div>
   </section>
 
