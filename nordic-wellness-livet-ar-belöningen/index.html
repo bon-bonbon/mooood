@@ -331,111 +331,72 @@
     /* ========================================
        2. KONCEPT
        ======================================== */
-    .koncept {
-      background: var(--bg-light);
-      padding: var(--section-pad) 24px;
-    }
-
-    .koncept-inner {
-      max-width: var(--max-text);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .koncept-text .section-label {
-      color: var(--black);
-    }
-
-    .koncept-text h2 {
-      font-family: var(--font);
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      color: var(--black);
-    }
-
-    .koncept-text p {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #444;
-    }
-
-    .koncept-graphic {
-      display: flex;
-      justify-content: center;
-    }
-
-    .koncept-graphic img {
-      max-width: 100%;
-      max-height: 360px;
-    }
-
-    @media (max-width: 768px) {
-      .koncept-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .koncept-graphic {
-        order: -1;
-      }
-    }
-
     /* ========================================
-       3. VIDEO
+       2. VIDEO HERO
        ======================================== */
-    .video-section {
+    .video-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
       background: var(--black);
-      color: var(--text-light);
-      padding: var(--section-pad) 24px;
     }
 
-    .video-section .section-header {
-      max-width: 900px;
-      margin: 0 auto 60px;
+    .video-hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .video-section .section-label {
-      color: var(--white);
+    .video-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.0) 30%,
+        rgba(0,0,0,0.65) 70%,
+        rgba(0,0,0,0.95) 100%
+      );
     }
 
-    .video-section h2 {
+    .video-hero-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(40px, 8vw, 80px) clamp(24px, 6vw, 80px) clamp(56px, 8vw, 90px);
+      max-width: 1100px;
+    }
+
+    .video-hero-label {
+      display: block;
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+
+    .video-hero-title {
       font-family: var(--font);
       font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2.8rem, 7vw, 6rem);
       letter-spacing: -0.03em;
-      line-height: 1.05;
+      line-height: 0.95;
       text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 20px;
     }
 
-    .video-block {
-      max-width: 900px;
-      margin: 0 auto;
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .video-block video {
-      width: 100%;
-      border-radius: 2px;
-      background: #111;
-    }
-
-    .video-block .video-caption {
-      margin-top: 14px;
+    .video-hero-desc {
       font-weight: 400;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      text-align: center;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 0;
     }
 
     /* ========================================
@@ -736,38 +697,20 @@
 
 
   <!-- ==========================================
-       2. KONCEPT
+       2. VIDEO HERO
        ========================================== -->
-  <section class="koncept">
-    <div class="koncept-inner">
-      <div class="koncept-text reveal">
-        <span class="section-label">Koncept</span>
-        <h2>Livet är belöningen</h2>
-        <p>Du tränar inte för att du måste. Du tränar för att livet smakar bättre när du är i form — kroppen och sinnet. Nordic Wellness är platsen där du laddar upp för det liv du vill leva.</p>
-      </div>
-      <div class="koncept-graphic reveal-scale" style="transition-delay: 0.2s">
-        <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/koncept-illustration.svg" alt="Konceptillustration">
-      </div>
+  <section class="video-hero">
+    <video autoplay muted loop playsinline preload="auto"
+           poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/video-klipp1-hero.png">
+      <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/film.mp4" type="video/mp4">
+    </video>
+    <div class="video-hero-overlay"></div>
+    <div class="video-hero-body">
+      <span class="video-hero-label">Nordic Wellness — Kampanjkoncept</span>
+      <h2 class="video-hero-title">Livet är<br>belöningen</h2>
+      <p class="video-hero-desc">Du tränar inte för att du måste. Du tränar för att livet smakar bättre när du är i form. Nordic Wellness är platsen där du laddar upp för det liv du vill leva.</p>
     </div>
   </section>
-
-
-  <!-- ==========================================
-       3. VIDEO
-       ========================================== -->
-  <section class="video-section">
-    <div class="section-header reveal">
-      <span class="section-label">Film</span>
-      <h2>Träna för att leva</h2>
-    </div>
-
-    <!-- VIDEO — EN film ~20 sek -->
-    <div class="video-block reveal">
-      <!-- BON: Byt src till kampanjfilmen (MP4) och poster till en stillbild (WEBP/PNG) -->
-      <video controls poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/video-klipp1-hero.png" preload="metadata">
-        <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/film.mp4" type="video/mp4">
-      </video>
-    </div>
   </section>
 
 
