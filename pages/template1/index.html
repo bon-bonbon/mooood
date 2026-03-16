@@ -17,37 +17,47 @@
   pages/[kund]-[koncept]/ innan du börjar redigera.
 
   TEMPLATE:    template1
-  VERSION:     1.0
+  VERSION:     2.0  (uppdaterad 2026-03-16)
   SLUG:        BON ersätter "SLUG" i alla URL:er med kampanjens slug
+
+  SIDSTRUKTUR:
+  1. Billbords ögat-zoom (hero-intro) — FAST, ändra ej
+  2. Video-hero — kampanjfilmen spelar autoplay fullskärm med overlay-text
+  3. Bildgalleri — 4 cinematiska fullbreddspaneler med text-overlay
+  4. Budskap — kärnbudskap + målgrupp/tonalitet/placeringar
+  5. Footer — FAST, ändra ej
 
   ASSETS ATT PRODUCERA:
   ─────────────────────────────────────────────────────────
   Sektion       Typ          Antal   Verktyg           Format
   ─────────────────────────────────────────────────────────
-  meta          og:image     1       (hero-bild)       WEBP
-  koncept       illustration 1       Recraft V4        SVG/PNG/WEBP
-  video         video+poster 1       Kling             MP4+WEBP
-  galleri       bild+text    4*      Nano Banana Pro   WEBP
+  video-hero    film+poster  1       Veo 3.1           MP4+PNG
+  galleri       bild         4*      Nano Banana Pro   PNG
   ─────────────────────────────────────────────────────────
-  * = standardantal för galleri, Bon kan lägga till eller ta bort galleri-kort
+  * = standardantal, kan läggas till/tas bort
+  OBS: Recraft-illustration INGÅR INTE längre i template2.0
 
-  VIDEO-STANDARD: EN film på ~20 sek (4 klipp via Veo 3.1 frame chain).
-  Filmen spelar autoplay i video-hero-sektionen. Följ skills/video-prompting/SKILL.md.
+  VIDEO-STANDARD:
+  - ~30 sek (4 klipp × 8 sek via Veo 3.1 image-to-video, frame chain)
+  - Veo 3.1 i första hand, Veo 3.0 som fallback
+  - ALLTID konvertera: -profile:v main -pix_fmt yuv420p -movflags +faststart
+  - Följ skills/video-prompting/SKILL.md
 
-  TEXTER ATT FYLLA I:
-  ─────────────────────────────────────────────────────────
-  Plats                     Innehåll
+  BILDFORMAT:
+  - PNG fungerar — WEBP-konvertering är trasig på denna Mac (ffmpeg saknar encoder)
+  - Ladda upp PNG direkt till R2, referera som .png i HTML
+
+  TEXTER ATT FYLLA I (BON: kommentarer i HTML):
   ─────────────────────────────────────────────────────────
   <title>                   Kampanjnamn — Kundnamn | Billbords
   meta description          Kort kampanjbeskrivning
-  hero-tagline              T.ex. "Presents" eller kundnamn
+  hero-tagline              Kundnamn
   video-hero label          'KUND — Kampanjkoncept'
   video-hero title          Kampanjtitel/tagline (stora bokstäver)
   video-hero desc           Konceptbeskrivning (1-2 meningar)
-  video h2                  Slagkraftig kampanjrubrik för filmsektionen — kort, kärnfull, kampanjspecifik
-  gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
-  gallery-card h3 (per kort) Budskapets rubrik
-  gallery-card p (per kort)  Budskapets beskrivning (2-4 meningar — layouten ger plats för mer text)
+  gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord)
+  gallery-card h3 (×4)      Budskapets rubrik
+  gallery-card p (×4)       Budskapets beskrivning (2-3 meningar)
   budskap blockquote        Kampanjens kärnbudskap
   budskap målgrupp          Primär målgrupp
   budskap tonalitet         Ton och känsla
@@ -55,12 +65,11 @@
   ─────────────────────────────────────────────────────────
 
   R2 URL-MÖNSTER:
-  assets.mooood.com/kampanjer/[SLUG]/[filnamn]
+  https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/kampanjer/[SLUG]/[filnamn]
 
   FASTA ELEMENT (ändra INTE):
   - Billbords ögat-zoom (hero-intro)
   - Billbords logotyp i hero-reveal
-  - Sektionslabel "Film" (video)
   - Footer med Billbords-branding
   ============================================================
   -->
