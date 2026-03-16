@@ -403,17 +403,18 @@
        4. BILDGALLERI
        ======================================== */
     .gallery-section {
-      background: var(--offwhite);
-      padding: var(--section-pad) 24px;
+      background: var(--black);
+      padding: 0;
     }
 
     .gallery-section .section-header {
       max-width: var(--max-media);
-      margin: 0 auto 60px;
+      margin: 0 auto;
+      padding: var(--section-pad) 24px 60px;
     }
 
     .gallery-section .section-label {
-      color: var(--black);
+      color: rgba(255,255,255,0.5);
     }
 
     .gallery-section h2 {
@@ -423,72 +424,77 @@
       letter-spacing: -0.03em;
       line-height: 1.05;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--white);
     }
 
     .gallery {
-      max-width: var(--max-media);
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 140px;
     }
 
     .gallery-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      position: relative;
+      height: 85vh;
+      min-height: 480px;
+      overflow: hidden;
     }
 
-    .gallery-card:nth-child(even) .gallery-card-img {
-      order: 2;
-    }
-
-    .gallery-card:nth-child(even) .gallery-card-text {
-      order: 1;
+    .gallery-card-img {
+      position: absolute;
+      inset: 0;
     }
 
     .gallery-card-img img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
+      width: 100%; height: 100%;
       object-fit: cover;
-      border-radius: 2px;
+      object-position: center 20%;
+      transition: transform 0.8s ease;
+    }
+
+    .gallery-card:hover .gallery-card-img img {
+      transform: scale(1.03);
+    }
+
+    .gallery-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.0) 30%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.92) 100%
+      );
     }
 
     .gallery-card-text {
-      padding: 20px 0;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(32px, 5vw, 60px) clamp(24px, 6vw, 72px) clamp(40px, 6vw, 64px);
+      max-width: 760px;
     }
 
     .gallery-card h3 {
       font-family: var(--font);
       font-weight: 900;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
       text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 16px;
     }
 
     .gallery-card p {
       font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #555;
-      max-width: 44ch;
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 52ch;
     }
 
     @media (max-width: 768px) {
       .gallery-card {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .gallery-card:nth-child(even) .gallery-card-img {
-        order: 0;
-      }
-      .gallery-card:nth-child(even) .gallery-card-text {
-        order: 0;
+        height: 75vh;
       }
     }
 
@@ -729,52 +735,44 @@
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration (WEBP rekommenderas) -->
           <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/galleri-1-energi.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
           <h3>Hitta din energi</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
           <p>Oavsett om du gillar styrka, kondition eller rörelse — Nordic Wellness har något som tänder dig. Över 400 klubbar. Alltid nära dig.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
           <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/galleri-2-grupp.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
           <h3>Träna med glädje</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
           <p>Träning är roligare tillsammans. Hitta din grupp och din rytm på närmaste Nordic Wellness. För alla — oavsett vem du är eller varför du tränar.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
           <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/galleri-3-känslan.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
           <h3>Känslan efteråt</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
           <p>Den där känslan när passet är klart. Energin som sitter kvar hela dagen — i möten, vid middagsbordet, med de du älskar. Det är därför du gör det.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
           <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/nordic-wellness-livet-ar-belöningen/galleri-4-belöningen.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
           <h3>Livet är belöningen</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
           <p>Du tränar inte för att du måste. Du tränar för att livet smakar bättre när du är i form. Middagen sitter bättre. Skrattet sitter lösare. Nordic Wellness ger dig energin att leva fullt ut.</p>
         </div>
       </div>
