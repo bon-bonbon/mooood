@@ -31,8 +31,8 @@
   ─────────────────────────────────────────────────────────
   * = standardantal för galleri, Bon kan lägga till eller ta bort galleri-kort
 
-  VIDEO-STANDARD: EN film på ~20 sek (4 klipp extend:ade via Kling).
-  Fokus på kvalitet, inte kvantitet. Följ skills/video-prompting/SKILL.md.
+  VIDEO-STANDARD: EN film på ~20 sek (4 klipp via Veo 3.1 frame chain).
+  Filmen spelar autoplay i video-hero-sektionen. Följ skills/video-prompting/SKILL.md.
 
   TEXTER ATT FYLLA I:
   ─────────────────────────────────────────────────────────
@@ -41,8 +41,9 @@
   <title>                   Kampanjnamn — Kundnamn | Billbords
   meta description          Kort kampanjbeskrivning
   hero-tagline              T.ex. "Presents" eller kundnamn
-  koncept h2                Kampanjtitel/tagline
-  koncept p                 Konceptbeskrivning (1-2 meningar)
+  video-hero label          'KUND — Kampanjkoncept'
+  video-hero title          Kampanjtitel/tagline (stora bokstäver)
+  video-hero desc           Konceptbeskrivning (1-2 meningar)
   video h2                  Slagkraftig kampanjrubrik för filmsektionen — kort, kärnfull, kampanjspecifik
   gallery h2                Slagkraftigt kampanjbudskap (max 5-7 ord, kampanjspecifikt)
   gallery-card h3 (per kort) Budskapets rubrik
@@ -65,10 +66,11 @@
   -->
 
   <!-- BON: Byt title och description -->
-  <title>Kampanjnamn — Kundnamn | Billbords</title>
-  <meta name="description" content="Kampanjbeskrivning">
-  <meta property="og:title" content="Kampanjnamn — Kundnamn | Billbords">
-  <meta property="og:description" content="Kampanjbeskrivning">
+  <!-- BON: Byt title och description -->
+  <title>KAMPANJTITEL — KUND | Billbords</title>
+  <meta name="description" content="KAMPANJBESKRIVNING">
+  <meta property="og:title" content="KAMPANJTITEL — KUND | Billbords">
+  <meta property="og:description" content="KAMPANJBESKRIVNING">
   <!-- BON: Byt og:image till kampanjens hero -->
   <meta property="og:image" content="https://assets.mooood.com/kampanjer/SLUG/hero.webp">
   <meta property="og:type" content="website">
@@ -331,128 +333,90 @@
     /* ========================================
        2. KONCEPT
        ======================================== */
-    .koncept {
-      background: var(--bg-light);
-      padding: var(--section-pad) 24px;
-    }
-
-    .koncept-inner {
-      max-width: var(--max-text);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .koncept-text .section-label {
-      color: var(--black);
-    }
-
-    .koncept-text h2 {
-      font-family: var(--font);
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      color: var(--black);
-    }
-
-    .koncept-text p {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #444;
-    }
-
-    .koncept-graphic {
-      display: flex;
-      justify-content: center;
-    }
-
-    .koncept-graphic img {
-      max-width: 100%;
-      max-height: 360px;
-    }
-
-    @media (max-width: 768px) {
-      .koncept-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .koncept-graphic {
-        order: -1;
-      }
-    }
-
     /* ========================================
-       3. VIDEO
+       2. VIDEO HERO
        ======================================== */
-    .video-section {
+    .video-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
       background: var(--black);
-      color: var(--text-light);
-      padding: var(--section-pad) 24px;
     }
 
-    .video-section .section-header {
-      max-width: 900px;
-      margin: 0 auto 60px;
+    .video-hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .video-section .section-label {
-      color: var(--white);
+    .video-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.0) 30%,
+        rgba(0,0,0,0.65) 70%,
+        rgba(0,0,0,0.95) 100%
+      );
     }
 
-    .video-section h2 {
+    .video-hero-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(40px, 8vw, 80px) clamp(24px, 6vw, 80px) clamp(56px, 8vw, 90px);
+      max-width: 1100px;
+    }
+
+    .video-hero-label {
+      display: block;
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+
+    .video-hero-title {
       font-family: var(--font);
       font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2.8rem, 7vw, 6rem);
       letter-spacing: -0.03em;
-      line-height: 1.05;
+      line-height: 0.95;
       text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 20px;
     }
 
-    .video-block {
-      max-width: 900px;
-      margin: 0 auto;
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .video-block video {
-      width: 100%;
-      border-radius: 2px;
-      background: #111;
-    }
-
-    .video-block .video-caption {
-      margin-top: 14px;
+    .video-hero-desc {
       font-weight: 400;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      text-align: center;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 0;
     }
 
     /* ========================================
        4. BILDGALLERI
        ======================================== */
     .gallery-section {
-      background: var(--offwhite);
-      padding: var(--section-pad) 24px;
+      background: var(--black);
+      padding: 0;
     }
 
     .gallery-section .section-header {
       max-width: var(--max-media);
-      margin: 0 auto 60px;
+      margin: 0 auto;
+      padding: var(--section-pad) 24px 60px;
     }
 
     .gallery-section .section-label {
-      color: var(--black);
+      color: rgba(255,255,255,0.5);
     }
 
     .gallery-section h2 {
@@ -462,72 +426,77 @@
       letter-spacing: -0.03em;
       line-height: 1.05;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--white);
     }
 
     .gallery {
-      max-width: var(--max-media);
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 140px;
     }
 
     .gallery-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      position: relative;
+      height: 85vh;
+      min-height: 480px;
+      overflow: hidden;
     }
 
-    .gallery-card:nth-child(even) .gallery-card-img {
-      order: 2;
-    }
-
-    .gallery-card:nth-child(even) .gallery-card-text {
-      order: 1;
+    .gallery-card-img {
+      position: absolute;
+      inset: 0;
     }
 
     .gallery-card-img img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
+      width: 100%; height: 100%;
       object-fit: cover;
-      border-radius: 2px;
+      object-position: center 20%;
+      transition: transform 0.8s ease;
+    }
+
+    .gallery-card:hover .gallery-card-img img {
+      transform: scale(1.03);
+    }
+
+    .gallery-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.0) 30%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.92) 100%
+      );
     }
 
     .gallery-card-text {
-      padding: 20px 0;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(32px, 5vw, 60px) clamp(24px, 6vw, 72px) clamp(40px, 6vw, 64px);
+      max-width: 760px;
     }
 
     .gallery-card h3 {
       font-family: var(--font);
       font-weight: 900;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
       text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 16px;
     }
 
     .gallery-card p {
       font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #555;
-      max-width: 44ch;
+      font-size: clamp(0.9rem, 1.3vw, 1rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 52ch;
     }
 
     @media (max-width: 768px) {
       .gallery-card {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .gallery-card:nth-child(even) .gallery-card-img {
-        order: 0;
-      }
-      .gallery-card:nth-child(even) .gallery-card-text {
-        order: 0;
+        height: 75vh;
       }
     }
 
@@ -722,8 +691,8 @@
       <!-- Logo + tagline — revealed at end of zoom -->
       <div class="hero-reveal" id="heroReveal">
         <img src="../../logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
-        <!-- BON: Byt undertext -->
-        <p class="hero-tagline">Presents</p>
+        <!-- BON: Byt till kundnamn -->
+        <p class="hero-tagline">KUNDNAMN</p>
       </div>
 
       <!-- Scroll hint -->
@@ -737,42 +706,23 @@
 
 
   <!-- ==========================================
-       2. KONCEPT
+       2. VIDEO HERO
        ========================================== -->
-  <section class="koncept">
-    <div class="koncept-inner">
-      <div class="koncept-text reveal">
-        <span class="section-label">Koncept</span>
-        <!-- BON: Byt till din kampanjtitel/tagline -->
-        <h2>Självkänsla kommer inifrån</h2>
-        <!-- BON: Byt till en kort beskrivning av kampanjens kärnkoncept och kreativa idé (1–2 meningar) -->
-        <p>Kampanjens kärnkoncept och vision beskrivs här. En eller två meningar som sammanfattar den kreativa idén och vad kampanjen vill uppnå.</p>
-      </div>
-      <div class="koncept-graphic reveal-scale" style="transition-delay: 0.2s">
-        <!-- BON: Byt till din konceptillustration. Kan vara SVG, PNG eller WEBP. -->
-        <img src="https://assets.mooood.com/kampanjer/SLUG/koncept-grafik.svg" alt="Konceptillustration">
-      </div>
+  <section class="video-hero">
+    <video autoplay muted loop playsinline preload="auto"
+           poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/video-klipp1-hero.png">
+      <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/film.mp4" type="video/mp4">
+    </video>
+    <div class="video-hero-overlay"></div>
+    <div class="video-hero-body">
+      <!-- BON: Byt label till "KUND — Kampanjkoncept" -->
+      <span class="video-hero-label">KUND — Kampanjkoncept</span>
+      <!-- BON: Byt till kampanjens tagline -->
+      <h2 class="video-hero-title">KAMPANJTITEL</h2>
+      <!-- BON: Byt till kampanjens konceptbeskrivning (1-2 meningar) -->
+      <p class="video-hero-desc">KONCEPTBESKRIVNING</p>
     </div>
   </section>
-
-
-  <!-- ==========================================
-       3. VIDEO
-       ========================================== -->
-  <section class="video-section">
-    <div class="section-header reveal">
-      <span class="section-label">Film</span>
-      <!-- BON: Kort, slagkraftig kampanjrubrik — max 4-6 ord, kampanjspecifik, ska slå hårt -->
-      <h2>Kampanjrubrik film</h2>
-    </div>
-
-    <!-- VIDEO — EN film ~20 sek -->
-    <div class="video-block reveal">
-      <!-- BON: Byt src till kampanjfilmen (MP4) och poster till en stillbild (WEBP/PNG) -->
-      <video controls poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/hero.webp" preload="metadata">
-        <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/film.mp4" type="video/mp4">
-      </video>
-    </div>
   </section>
 
 
@@ -782,8 +732,8 @@
   <section class="gallery-section">
     <div class="section-header reveal">
       <span class="section-label">Budskap</span>
-      <!-- BON: Skriv ett kort, kärnfullt kampanjbudskap — slagkraftigt och kampanjspecifikt. Max 5-7 ord. Ska slå hårt. -->
-      <h2>The message that moves people</h2>
+      <!-- BON: Byt till slagkraftigt kampanjbudskap (max 5-7 ord) -->
+      <h2>KAMPANJBUDSKAP</h2>
     </div>
 
     <!-- BON: Fyll i de fyra korten med dina budskap. Bild kan vara foto eller illustration – välj det du skapat. -->
@@ -792,53 +742,45 @@
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration (WEBP rekommenderas) -->
-          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild1.webp" alt="" loading="lazy">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/galleri-1-energi.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
-          <h3>Rubrik kort 1</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
-          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+          <h3>Hitta din energi</h3>
+          <p>Oavsett om du gillar styrka, kondition eller rörelse — Nordic Wellness har något som tänder dig. Över 400 klubbar. Alltid nära dig.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
-          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild2.webp" alt="" loading="lazy">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/galleri-2-grupp.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
-          <h3>Rubrik kort 2</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
-          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+          <h3>Träna med glädje</h3>
+          <p>Träning är roligare tillsammans. Hitta din grupp och din rytm på närmaste Nordic Wellness. För alla — oavsett vem du är eller varför du tränar.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
-          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild3.webp" alt="" loading="lazy">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/galleri-3-känslan.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
-          <h3>Rubrik kort 3</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
-          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+          <h3>Känslan efteråt</h3>
+          <p>Den där känslan när passet är klart. Energin som sitter kvar hela dagen — i möten, vid middagsbordet, med de du älskar. Det är därför du gör det.</p>
         </div>
       </div>
 
       <div class="gallery-card reveal">
         <div class="gallery-card-img">
-          <!-- BON: Byt till din bild eller illustration -->
-          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/bild4.webp" alt="" loading="lazy">
+          <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/SLUG/galleri-4-belöningen.png" alt="" loading="lazy">
         </div>
+        <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
-          <!-- BON: Byt till kortets rubrik/budskap -->
-          <h3>Rubrik kort 4</h3>
-          <!-- BON: Byt till en kort beskrivning av budskapet (2–4 meningar) -->
-          <p>Kort beskrivning av budskapet eller scenen som bilden visar.</p>
+          <h3>Livet är belöningen</h3>
+          <p>Du tränar inte för att du måste. Du tränar för att livet smakar bättre när du är i form. Middagen sitter bättre. Skrattet sitter lösare. Nordic Wellness ger dig energin att leva fullt ut.</p>
         </div>
       </div>
 
@@ -853,24 +795,28 @@
     <div class="budskap-inner">
       <span class="section-label reveal">Kampanj</span>
       <!-- BON: Byt till din kampanjtitel eller kärnbudskap -->
-      <blockquote class="reveal-scale">Självkänsla kommer inifrån</blockquote>
+      <!-- BON: Byt till kampanjens kärnbudskap -->
+      <blockquote class="reveal-scale">KÄRNBUDSKAP</blockquote>
 
       <!-- BON: Fyll i alla tre fälten nedan med kampanjens specifika information -->
       <div class="meta">
         <div class="reveal">
           <strong>Målgrupp</strong>
           <!-- BON: Beskriv kampanjens primära målgrupp -->
-          <p>Beskrivning av målgruppen</p>
+          <!-- BON: Beskriv kampanjens primära målgrupp -->
+          <p>MÅLGRUPP</p>
         </div>
         <div class="reveal">
           <strong>Tonalitet</strong>
           <!-- BON: Beskriv kampanjens ton och känsla -->
-          <p>Beskrivning av tonaliteten</p>
+          <!-- BON: Beskriv kampanjens ton och känsla -->
+          <p>TONALITET</p>
         </div>
         <div class="reveal">
           <strong>Placeringar</strong>
           <!-- BON: Lista föreslagna OOH-placeringar -->
-          <p>Föreslagna placeringar</p>
+          <!-- BON: Lista föreslagna OOH-placeringar -->
+          <p>PLACERINGAR</p>
         </div>
       </div>
     </div>
