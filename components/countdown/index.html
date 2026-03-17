@@ -75,12 +75,6 @@
       line-height: 1;
       letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .countdown-number.tick {
-      transform: translateY(-4px);
-      opacity: 0.6;
     }
 
     .countdown-unit-label {
@@ -171,16 +165,6 @@
 
     function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
 
-    function tick(el, val) {
-      el.classList.remove('tick');
-      void el.offsetWidth; // reflow
-      el.textContent = pad(val);
-      el.classList.add('tick');
-      setTimeout(() => el.classList.remove('tick'), 150);
-    }
-
-    let prevSeconds = null;
-
     function update() {
       const now  = new Date();
       const diff = TARGET_DATE - now;
@@ -196,25 +180,14 @@
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
 
-      if (s !== prevSeconds) {
-        tick(els.seconds, s);
-        if (prevSeconds === null || s === 59) {
-          tick(els.minutes, m);
-          if (m === 59) {
-            tick(els.hours, h);
-            if (h === 23) tick(els.days, d);
-            else els.days.textContent = pad(d);
-          } else {
-            els.hours.textContent   = pad(h);
-            els.days.textContent    = pad(d);
-          }
-        }
-        prevSeconds = s;
-      }
+      els.days.textContent    = pad(d);
+      els.hours.textContent   = pad(h);
+      els.minutes.textContent = pad(m);
+      els.seconds.textContent = pad(s);
     }
 
     update();
-    setInterval(update, 250);
+    setInterval(update, 1000);
   </script>
 
 </body>
