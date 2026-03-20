@@ -62,22 +62,6 @@
     .reveal { opacity: 0; transition: opacity 0.8s ease; }
     .reveal.visible { opacity: 1; }
 
-    /* ── DATA STALENESS BANNER ─────────────────────────── */
-    .stale-banner {
-      background: #2a1a00;
-      border-bottom: 1px solid #FFB020;
-      padding: 10px clamp(24px, 6vw, 80px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      color: #FFB020;
-      position: relative;
-      z-index: 100;
-    }
-    .stale-banner strong { font-weight: 700; }
-
     /* ══════════════════════════════════════════════════════
        HERO ZOOM INTRO
     ══════════════════════════════════════════════════════ */
@@ -416,6 +400,23 @@
     .expires-red   { color: #FF4D2E; }
     .expires-amber { color: #FFB020; }
 
+    .prop-empty {
+      padding: 40px;
+      border: 1px solid rgba(61,253,126,0.2);
+      background: rgba(61,253,126,0.04);
+      text-align: center;
+    }
+    .prop-empty-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .prop-empty h3 {
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #3DFD7E;
+      margin-bottom: 8px;
+    }
+    .prop-empty p { font-size: 0.85rem; color: var(--muted-w); line-height: 1.7; }
+
     /* ══════════════════════════════════════════════════════
        4. RANKING — offwhite bg
     ══════════════════════════════════════════════════════ */
@@ -505,8 +506,8 @@
 
     .trend-day-1 {
       padding: 40px;
-      border: 1px solid rgba(255,77,46,0.35);
-      background: rgba(255,77,46,0.05);
+      border: 1px solid rgba(61,100,253,0.35);
+      background: rgba(61,100,253,0.05);
       text-align: center;
     }
     .trend-day-1 .trend-icon {
@@ -518,7 +519,7 @@
       font-size: 1.1rem;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      color: #FF4D2E;
+      color: var(--blue);
       margin-bottom: 12px;
     }
     .trend-day-1 p {
@@ -689,11 +690,6 @@
 </head>
 <body>
 
-  <!-- ══ STALE DATA BANNER ════════════════════════════════ -->
-  <div class="stale-banner">
-    ⚠ &nbsp;<strong>OBS: DOS offline 6:e natten i rad.</strong>&nbsp; Siffrorna är från senast kända data (13 mars). David — MCP-servern svarar 500 på alla anrop inkl. token refresh. Bon försöker igen i natt.
-  </div>
-
   <!-- ══ 0. ZOOM INTRO ═══════════════════════════════════ -->
   <div class="hero-pin" id="heroPin">
     <div class="hero-sticky" id="heroSticky">
@@ -715,47 +711,47 @@
   <!-- ══ 1. HERO ══════════════════════════════════════════ -->
   <section class="hero">
     <img class="hero-img"
-      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png?v=20260319"
-      alt="Soluppgång över svenska skärgården, gyllene morgonljus på stilla vatten">
+      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png?v=20260320"
+      alt="Morgondis över svensk skog, gyllene vårljus genom tallarna">
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <span class="hero-date" id="hero-date"></span>
       <h1 class="hero-title">God morgon,<br><em>Nikk.</em></h1>
-      <p class="hero-subtitle">Glad torsdag. DOS är fortfarande offline — data från 13/3 (6 dagar gammal). Kristdemokraterna Ljungby löper ut IMORGON. Ring Kaj-Mikael idag.</p>
+      <p class="hero-subtitle">Glad fredag — och grattis till vårdagjämningen. DOS är tillbaka online. Frisk data, inga kritiska offerter idag — men 26 utgångna väntar på uppföljning.</p>
     </div>
   </section>
 
   <!-- ══ 2. INTÄKTER ═══════════════════════════════════════ -->
   <section class="section-revenue">
     <div class="inner">
-      <span class="label label-dark">Intäkter · Cachat data 13 mars — DOS offline 6 dagar</span>
-      <h2 class="rev-heading reveal">Mars 2026 —<br><span>min 27,9% av mål</span></h2>
+      <span class="label label-dark">Intäkter · Live data 20 mars 2026</span>
+      <h2 class="rev-heading reveal">Mars 2026 —<br><span>40,6% av mål</span></h2>
 
       <div class="rev-grid reveal">
         <div class="rev-cell">
-          <div class="rev-cell-label">Stängda deals i mars (minst)</div>
-          <div class="rev-cell-value accent">661 038 kr</div>
-          <div class="rev-cell-sub">ex. moms · senast känd 13/3 · 6 dagar gammal · troligen högre nu</div>
+          <div class="rev-cell-label">Stängda deals i mars</div>
+          <div class="rev-cell-value accent">1 097 008 kr</div>
+          <div class="rev-cell-sub">ex. moms · live data 20/3</div>
         </div>
         <div class="rev-cell">
           <div class="rev-cell-label">Marsmål</div>
-          <div class="rev-cell-value">2 367 000 kr</div>
+          <div class="rev-cell-value">2 700 000 kr</div>
           <div class="rev-cell-sub">ex. moms</div>
         </div>
         <div class="rev-cell">
           <div class="rev-cell-label">Total omsättning 2026</div>
-          <div class="rev-cell-value">26,0 Mkr+</div>
-          <div class="rev-cell-sub">alla WON deals t.o.m. 13/3 · kan ha ökat</div>
+          <div class="rev-cell-value">26,2 Mkr</div>
+          <div class="rev-cell-sub">alla WON deals t.o.m. idag</div>
         </div>
       </div>
 
       <div class="progress-wrap reveal">
         <div class="progress-meta">
-          <span class="progress-meta-label">Framsteg mot marsmålet (data 13/3 — 6 dagar gammal)</span>
-          <span class="progress-meta-pct">27,9%+</span>
+          <span class="progress-meta-label">Framsteg mot marsmålet · 11 dagar kvar i månaden</span>
+          <span class="progress-meta-pct">40,6%</span>
         </div>
         <div class="progress-track">
-          <div class="progress-fill warn" style="width:27.9%"></div>
+          <div class="progress-fill warn" style="width:40.6%"></div>
         </div>
       </div>
     </div>
@@ -764,78 +760,34 @@
   <!-- ══ 3. OFFERTER ══════════════════════════════════════ -->
   <section class="section-proposals">
     <div class="inner">
-      <span class="label label-light">Offerter · Cachat data 13 mars — DOS offline 6 dagar</span>
-      <h2 class="prop-heading reveal">Kritiska offerter —<br>Kristdemokraterna löper ut imorgon.</h2>
+      <span class="label label-light">Offerter · Live data 20 mars 2026</span>
+      <h2 class="prop-heading reveal">30 aktiva offerter —<br>inga löper ut idag.</h2>
 
       <div class="prop-strip reveal">
         <div class="prop-strip-cell">
-          <div class="prop-strip-num red">27+</div>
-          <div class="prop-strip-txt">Utgångna offerter (est.)</div>
+          <div class="prop-strip-num red">26</div>
+          <div class="prop-strip-txt">Utgångna offerter att följa upp</div>
         </div>
         <div class="prop-strip-cell">
-          <div class="prop-strip-num amber">1</div>
-          <div class="prop-strip-txt">Löper ut IMORGON — 20 mars</div>
+          <div class="prop-strip-num green">0</div>
+          <div class="prop-strip-txt">Löper ut idag — lugn dag</div>
         </div>
         <div class="prop-strip-cell">
-          <div class="prop-strip-num red">1,0 Mkr</div>
-          <div class="prop-strip-txt">Brinova — 5 dagar utgången</div>
+          <div class="prop-strip-num amber">2,79 Mkr</div>
+          <div class="prop-strip-txt">Värde i utgångna offerter</div>
         </div>
       </div>
 
       <div class="prop-list reveal">
-
-        <!-- Kristdemokraterna — 20 mars, 1 dag kvar -->
-        <div class="prop-card warn">
-          <div class="prop-dot dot-amber"></div>
-          <div>
-            <div class="prop-name">Kristdemokraterna Ljungby &amp; Tingsryd — IMORGON</div>
-            <div class="prop-meta">Nikk Matson · VIEWED · Kaj-Mikael Petersson · Löper ut 20 mars — 1 dag kvar</div>
-          </div>
-          <div class="prop-right">
-            <div class="prop-value">69 990 kr</div>
-            <div class="prop-expires expires-amber">20 MARS — IMORGON</div>
-          </div>
+        <div class="prop-empty">
+          <div class="prop-empty-icon">✅</div>
+          <h3>Inga kritiska offerter idag</h3>
+          <p>
+            Inga offerter löper ut idag. Det finns dock <strong>26 utgångna offerter</strong> på totalt
+            <strong>2 789 955 kr</strong> som väntar på uppföljning — dessa är inte förlorade, bara vilande.
+            En systematisk uppringningsrunda kan återaktivera en stor del av värdet.
+          </p>
         </div>
-
-        <!-- Brinova — löpte ut 14 mars (5 dagar sedan) -->
-        <div class="prop-card urgent">
-          <div class="prop-dot dot-red"></div>
-          <div>
-            <div class="prop-name">Brinova offert</div>
-            <div class="prop-meta">Kim Aldén Engström · SENT per 13/3 · Löpte ut 14 mars (5 dagar sedan) — kräver uppföljning</div>
-          </div>
-          <div class="prop-right">
-            <div class="prop-value">1 027 290 kr</div>
-            <div class="prop-expires expires-red">UTGÅNGEN 5 dagar</div>
-          </div>
-        </div>
-
-        <!-- Bilkompani Sydost — löpte ut igår 18 mars -->
-        <div class="prop-card urgent">
-          <div class="prop-dot dot-red"></div>
-          <div>
-            <div class="prop-name">Bilkompani Sydost</div>
-            <div class="prop-meta">Kim Aldén Engström · VIEWED per 13/3 · Löpte ut igår 18 mars — uppföljning krävs</div>
-          </div>
-          <div class="prop-right">
-            <div class="prop-value">6 990 kr</div>
-            <div class="prop-expires expires-red">UTGÅNGEN IGÅR</div>
-          </div>
-        </div>
-
-        <!-- Halmstads Pantlånekassa — löpte ut 13 mars -->
-        <div class="prop-card urgent">
-          <div class="prop-dot dot-red"></div>
-          <div>
-            <div class="prop-name">Halmstads Pantlånekassa</div>
-            <div class="prop-meta">Alex Arvidsson · VIEWED · Löpte ut 13 mars (6 dagar sedan)</div>
-          </div>
-          <div class="prop-right">
-            <div class="prop-value">39 990 kr</div>
-            <div class="prop-expires expires-red">UTGÅNGEN 6 dagar</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -843,8 +795,8 @@
   <!-- ══ 4. RANKING ════════════════════════════════════════ -->
   <section class="section-ranking">
     <div class="inner">
-      <span class="label label-dark">Säljare · Cachat data 13 mars — ej uppdaterat på 6 dagar</span>
-      <h2 class="rank-heading reveal">Mars 2026 —<br>vem leder? (13/3)</h2>
+      <span class="label label-dark">Säljare · Mars 2026 · Live data</span>
+      <h2 class="rank-heading reveal">Mars 2026 —<br>vem leder?</h2>
 
       <div class="rank-list reveal">
 
@@ -853,12 +805,12 @@
           <div>
             <div class="rank-name">Nikk Matson</div>
             <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill gold-bar" style="width:21%"></div></div>
+              <div class="rank-bar"><div class="rank-bar-fill gold-bar" style="width:51%"></div></div>
             </div>
           </div>
           <div class="rank-right">
-            <div class="rank-value">349 990 kr</div>
-            <div class="rank-budget">av 1 667 000 · 21%</div>
+            <div class="rank-value">611 888 kr</div>
+            <div class="rank-budget">av 1 200 000 · 51%</div>
           </div>
         </div>
 
@@ -867,17 +819,59 @@
           <div>
             <div class="rank-name">Alex Arvidsson</div>
             <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:85%"></div></div>
+              <div class="rank-bar"><div class="rank-bar-fill" style="width:44%"></div></div>
             </div>
           </div>
           <div class="rank-right">
-            <div class="rank-value">310 130 kr</div>
-            <div class="rank-budget">Inget marsmål satt</div>
+            <div class="rank-value">350 120 kr</div>
+            <div class="rank-budget">av 800 000 · 44%</div>
           </div>
         </div>
 
         <div class="rank-row">
           <div class="rank-num">3</div>
+          <div>
+            <div class="rank-name">Media Byrå</div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar"><div class="rank-bar-fill" style="width:100%"></div></div>
+            </div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-value">100 000 kr</div>
+            <div class="rank-budget">av 100 000 · 100% ✓</div>
+          </div>
+        </div>
+
+        <div class="rank-row">
+          <div class="rank-num">4</div>
+          <div>
+            <div class="rank-name">Sales Partner</div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar"><div class="rank-bar-fill" style="width:35%"></div></div>
+            </div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-value">35 000 kr</div>
+            <div class="rank-budget">av 100 000 · 35%</div>
+          </div>
+        </div>
+
+        <div class="rank-row">
+          <div class="rank-num">5</div>
+          <div>
+            <div class="rank-name">Pål Vireberg</div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar"><div class="rank-bar-fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-value">0 kr</div>
+            <div class="rank-budget">av 500 000 · målet kvar</div>
+          </div>
+        </div>
+
+        <div class="rank-row">
+          <div class="rank-num">6</div>
           <div>
             <div class="rank-name">Kim Aldén Engström</div>
             <div class="rank-bar-wrap">
@@ -886,35 +880,7 @@
           </div>
           <div class="rank-right">
             <div class="rank-value">0 kr</div>
-            <div class="rank-budget">av 700 000 · Brinova + Bilkompani idag</div>
-          </div>
-        </div>
-
-        <div class="rank-row">
-          <div class="rank-num">4</div>
-          <div>
-            <div class="rank-name">Jesper Carlsson</div>
-            <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:1%"></div></div>
-            </div>
-          </div>
-          <div class="rank-right">
-            <div class="rank-value">918 kr</div>
-            <div class="rank-budget">Inget marsmål satt</div>
-          </div>
-        </div>
-
-        <div class="rank-row">
-          <div class="rank-num">5</div>
-          <div>
-            <div class="rank-name">Emelie Svensson</div>
-            <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:0%"></div></div>
-            </div>
-          </div>
-          <div class="rank-right">
-            <div class="rank-value">0 kr</div>
-            <div class="rank-budget">Inget marsmål satt</div>
+            <div class="rank-budget">inget marsmål satt</div>
           </div>
         </div>
 
@@ -929,31 +895,29 @@
       <h2 class="trend-heading reveal">Vad har hänt?</h2>
 
       <div class="trend-day-1 reveal">
-        <div class="trend-icon">🔴</div>
-        <h3>DOS offline 6:e natten i rad — trenddata saknas</h3>
+        <div class="trend-icon">📊</div>
+        <h3>Dag 1 — fler dagars data behövs för trendanalys</h3>
         <p>
-          Bon har försökt hämta data nätterna 14–19 mars, men DOS MCP returnerar 500-fel på alla anrop — även token refresh.<br>
-          <strong>Referensdata finns endast från 1 dag (13 mars). Dag 1 — fler dagars data behövs för trendanalys.</strong><br><br>
-          Det Bon vet sedan 13/3: intäkter 661 tkr, pipeline 3,0 Mkr, 24 utgångna offerter.<br><br>
-          ⚠️ <strong>David</strong> — MCP-servern svarar 500 på alla anrop inkl. /token-endpointen. Behöver troligen server-restart eller ny deploy.
-          Bon försöker igen i natt när DOS är uppe.
+          DOS är tillbaka online efter ett längre avbrott. Det här är <strong>första snapshoten med frisk data</strong> — trendanalysen
+          aktiveras automatiskt när Bon har samlat in data under flera dagar i följd.<br><br>
+          <strong>Dagens snapshot:</strong> Intäkter 1 097 tkr, pipeline 3 490 tkr, 26 utgångna offerter.<br><br>
+          Bon sparar detta som dag 1. Imorgon börjar trendbilden ta form.
         </p>
       </div>
 
-      <!-- Snapshot som referens -->
       <div class="trend-snapshot reveal" style="margin-top: 2px;">
-        <div class="trend-snapshot-date">Senast känd snapshot · 13 mars 2026 (6 dagar gammal)</div>
+        <div class="trend-snapshot-date">Snapshot · 20 mars 2026 · Dag 1 av ny dataserie</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">661 tkr</div>
+            <div class="tsn-val">1 097 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
           </div>
           <div>
-            <div class="tsn-val">3 005 tkr</div>
+            <div class="tsn-val">3 490 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
           </div>
           <div>
-            <div class="tsn-val">24</div>
+            <div class="tsn-val">26</div>
             <div class="tsn-lbl">Utgångna offerter</div>
           </div>
         </div>
@@ -972,25 +936,23 @@
 
         <div class="rec-card card-1">
           <div class="rec-num">1</div>
-          <div class="rec-tag">Brådskande · Idag · 1 dag kvar</div>
-          <div class="rec-title">Ring Kaj-Mikael nu —<br>Kristdemokraterna löper ut imorgon</div>
+          <div class="rec-tag">Uppföljning · Högt värde</div>
+          <div class="rec-title">26 utgångna offerter på 2,79 Mkr väntar på uppföljning</div>
           <p class="rec-body">
-            Kristdemokraterna Ljungby &amp; Tingsryd (69 990 kr) löper ut <strong>imorgon fredag 20 mars</strong>.
-            Du äger den, Nikk. Kaj-Mikael Petersson har visat intresse (VIEWED).
-            Ett samtal eller mail idag säkrar beslut i tid. Varmt lead — 
-            <strong>gör det nu, innan dagen tar fart.</strong>
+            Ingen av de utgångna offertorna är förlorade — de kan återaktiveras.
+            En systematisk uppringningsrunda kan rädda en stor del av värdet.
+            <strong>Börja med de högst värderade och ring dem idag.</strong>
           </p>
         </div>
 
         <div class="rec-card card-2">
           <div class="rec-num">2</div>
-          <div class="rec-tag">Strategiskt · Uppföljning</div>
-          <div class="rec-title">Brinova (1 Mkr) är 5 dagar gammal —<br>Kim behöver ta ett samtal</div>
+          <div class="rec-tag">Strategiskt · Process</div>
+          <div class="rec-title">26 utgångna offerter signalerar ett process-problem</div>
           <p class="rec-body">
-            Brinova-offerten på <strong>1 027 290 kr</strong> löpte ut 14 mars och är fortfarande ej bekräftad.
-            Kim äger den. En affär i den storleken försvinner inte av sig själv — 
-            men det gör möjligheten. Be Kim ringa Brinova idag och åter-aktivera offerten.
-            <strong>Det är den viktigaste potentiella affären i systemet just nu.</strong>
+            Så många utgångna offerter utan beslut tyder på att uppföljningsrutinen behöver skärpas.
+            Kortare giltighetstider, tydligare uppföljningsflöde.
+            <strong>En halvtimmes process-genomgång med säljarna kan vara värt miljoner på sikt.</strong>
           </p>
         </div>
 
@@ -1005,7 +967,7 @@
         Tänk på att njuta av <span>resan.</span><br>
         Ha en bra dag, Nikk.
       </h2>
-      <p class="signoff-sub">Bon · Torsdag 19 mars 2026 · Data cachad 13/3 — DOS offline 6 dagar i rad</p>
+      <p class="signoff-sub">Bon · Fredag 20 mars 2026 · Live data · DOS online ✓</p>
     </div>
   </section>
 
