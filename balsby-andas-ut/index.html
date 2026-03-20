@@ -337,47 +337,47 @@
     }
 
     /* ========================================
-       2. KONCEPT
+       2. FOTO HERO
        ======================================== */
-    /* ========================================
-       2. VIDEO HERO
-       ======================================== */
-    .video-hero {
+    .photo-hero {
       position: relative;
       height: 100vh;
       min-height: 560px;
       overflow: hidden;
       background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .video-hero video {
+    .photo-hero img {
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center 30%;
     }
 
-    .video-hero-overlay {
+    .photo-hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.1) 0%,
-        rgba(0,0,0,0.0) 30%,
-        rgba(0,0,0,0.65) 70%,
-        rgba(0,0,0,0.95) 100%
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.1) 35%,
+        rgba(0,0,0,0.5) 70%,
+        rgba(0,0,0,0.85) 100%
       );
     }
 
-    .video-hero-body {
+    .photo-hero-body {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       padding: clamp(40px, 8vw, 80px) clamp(24px, 6vw, 80px) clamp(56px, 8vw, 90px);
       max-width: 1100px;
     }
 
-    .video-hero-label {
+    .photo-hero-label {
       display: block;
       font-weight: 400;
       font-size: 0.65rem;
@@ -387,23 +387,24 @@
       margin-bottom: 16px;
     }
 
-    .video-hero-title {
+    .photo-hero-title {
       font-family: var(--font);
       font-weight: 900;
-      font-size: clamp(2.8rem, 7vw, 6rem);
-      letter-spacing: -0.03em;
-      line-height: 0.95;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      letter-spacing: -0.04em;
+      line-height: 0.92;
       text-transform: uppercase;
       color: #fff;
-      margin: 0 0 20px;
+      margin: 0 0 24px;
     }
 
-    .video-hero-desc {
-      font-weight: 400;
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    .photo-hero-desc {
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
       line-height: 1.7;
-      color: rgba(255,255,255,0.75);
-      max-width: 560px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
       margin: 0;
     }
 
@@ -711,20 +712,16 @@
 
 
   <!-- ==========================================
-       2. VIDEO HERO
+       2. FOTO HERO
        ========================================== -->
-  <section class="video-hero">
-    <video autoplay muted loop playsinline preload="auto"
-           poster="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/balsby-andas-ut/poster.png">
-      <source src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/balsby-andas-ut/film.mp4" type="video/mp4">
-    </video>
-    <div class="video-hero-overlay"></div>
-    <div class="video-hero-body">
-      <span class="video-hero-label">BALSBY BACKE — Andas Ut</span>
-      <h2 class="video-hero-title">ANDAS UT.</h2>
-      <p class="video-hero-desc">Ditt hem vid Råbelövssjön. Natur, lugn och gemenskap — på promenadavstånd.</p>
+  <section class="photo-hero">
+    <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/balsby-andas-ut/bild-4-kvällslugnet.png" alt="Kväll vid Råbelövssjön — Balsby Backe">
+    <div class="photo-hero-overlay"></div>
+    <div class="photo-hero-body">
+      <span class="photo-hero-label">BALSBY BACKE — Andas Ut</span>
+      <h2 class="photo-hero-title">Andas ut.<br>Du är hemma.</h2>
+      <p class="photo-hero-desc">Ditt nya hem vid Råbelövssjön. Sjön är nära — naturen börjar vid din dörr.</p>
     </div>
-  </section>
   </section>
 
 
@@ -748,7 +745,7 @@
         <div class="gallery-card-overlay"></div>
         <div class="gallery-card-text">
           <h3>Morgonen börjar bättre här.</h3>
-          <p>Råbelövssjön vaknar framför ditt fönster. Dis över vattnet, fåglar, stillhet. Varje morgon en påminnelse om varför du valde att bo här.</p>
+          <p>Råbelövssjön är nära — en kort promenad bort. Dis över vattnet, fåglar, stillhet. Varje morgon en påminnelse om varför du valde att bo här.</p>
         </div>
       </div>
 
@@ -800,7 +797,7 @@
       <div class="meta">
         <div class="reveal">
           <strong>Målgrupp</strong>
-          <p>Familjer 35–50 år i Skåne-regionen. Söker natur, trygghet och livskvalitet utan att ge upp stadsnärhet. Drömmer om att andas ut.</p>
+          <p>Familjer, par och vuxna 30–75 år i Skåne-regionen. Söker natur, trygghet och livskvalitet utan att ge upp stadsnärhet. Drömmer om att andas ut.</p>
         </div>
         <div class="reveal">
           <strong>Tonalitet</strong>
