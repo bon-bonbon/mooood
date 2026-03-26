@@ -5,812 +5,671 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Toyota Syd × Billbords — Kommersiellt Partnerskap</title>
-  <meta name="description" content="Kampanjkoncept och partnerskap — Toyota Syd × Billbords">
-  <meta property="og:title" content="Toyota Syd × Billbords — Kommersiellt Partnerskap">
-  <meta property="og:description" content="Synlighet. Berättande. Försäljning. 9 koncept för Toyota Syds anläggningar.">
+  <meta name="description" content="Kampanjkoncept för Toyota Syd — Billbords digitala skärmar i södra Sverige">
+  <meta property="og:title" content="Toyota Syd × Billbords">
+  <meta property="og:description" content="9 kampanjkoncept för Toyota Syds anläggningar">
+  <meta property="og:image" content="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-hero.png">
   <meta property="og:type" content="website">
-  <link rel="icon" href="https://assets.mooood.com/brand/favicon.ico">
 
   <style>
-    @font-face {
-      font-family: 'Unica77';
-      src: url('../fonts/Unica77/Unica77LL-ExtraBlack.otf') format('opentype');
-      font-weight: 950;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Unica77';
-      src: url('../fonts/Unica77/Unica77LL-Black.otf') format('opentype');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Unica77';
-      src: url('../fonts/Unica77/Unica77LL-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Unica77';
-      src: url('../fonts/Unica77/Unica77LL-Medium.otf') format('opentype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Unica77';
-      src: url('../fonts/Unica77/Unica77LL-Regular.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
+    @font-face { font-family:'Unica77'; src:url('../fonts/Unica77/Unica77LL-ExtraBlack.otf') format('opentype'); font-weight:950; font-display:swap; }
+    @font-face { font-family:'Unica77'; src:url('../fonts/Unica77/Unica77LL-Black.otf') format('opentype'); font-weight:900; font-display:swap; }
+    @font-face { font-family:'Unica77'; src:url('../fonts/Unica77/Unica77LL-Bold.otf') format('opentype'); font-weight:700; font-display:swap; }
+    @font-face { font-family:'Unica77'; src:url('../fonts/Unica77/Unica77LL-Regular.otf') format('opentype'); font-weight:400; font-display:swap; }
 
     :root {
-      --toyota-red: #EB0A1E;
+      --red: #EB0A1E;
       --blue: #3D64FD;
-      --black: #000000;
-      --white: #FFFFFF;
+      --black: #000;
+      --white: #fff;
       --offwhite: #FCFAEE;
-      --grey: #111111;
-      --grey-mid: #1a1a1a;
-      --text-muted: rgba(255,255,255,0.45);
       --font: 'Unica77', -apple-system, Helvetica Neue, Arial, sans-serif;
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font); background:var(--black); color:var(--white); -webkit-font-smoothing:antialiased; }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background: var(--black);
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: clamp(40px, 8vw, 100px);
-      background: var(--black);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-image: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-hero.png');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.45;
-    }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.5) 100%);
-    }
-
-    .hero > *:not(.hero-bg) { position: relative; z-index: 1; }
-
-    .hero-badge {
-      display: inline-flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      background: var(--toyota-red);
-      color: #fff;
+      padding: 20px 32px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+    .nav img { height: 20px; opacity: 0.9; }
+    .nav-partner {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 2px;
-      margin-bottom: 32px;
-      width: fit-content;
+      color: rgba(255,255,255,0.5);
     }
 
-    .hero-logos {
+    /* ── AD PANEL — varje annons är en fullskärms panel ── */
+    .ad {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 48px;
+      align-items: flex-end;
     }
 
-    .hero-logos img {
-      height: 28px;
-      width: auto;
-      opacity: 0.9;
+    .ad-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 8s ease;
     }
 
-    .hero-logos .divider {
-      font-size: 22px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.25);
+    .ad:hover .ad-img { transform: scale(1.03); }
+
+    .ad-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.35) 45%,
+        rgba(0,0,0,0.15) 100%
+      );
     }
 
-    .hero h1 {
-      font-size: clamp(42px, 9vw, 120px);
-      font-weight: 950;
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      max-width: 900px;
+    .ad-body {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: clamp(32px, 6vw, 72px);
+      padding-bottom: clamp(48px, 8vw, 96px);
     }
 
-    .hero h1 em {
-      color: var(--toyota-red);
-      font-style: normal;
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      max-width: 540px;
-      line-height: 1.5;
-      margin-bottom: 56px;
-    }
-
-    .hero-scroll {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .hero-scroll svg {
-      width: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      animation: bounce 1.8s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(4px); }
-    }
-
-    /* ── PARTNERSKAP-PANEL ── */
-    .partner-panel {
-      background: var(--toyota-red);
-      padding: clamp(60px, 10vw, 120px) clamp(40px, 8vw, 100px);
-    }
-
-    .partner-panel-inner {
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .partner-panel-inner { grid-template-columns: 1fr; gap: 48px; }
-    }
-
-    .partner-panel h2 {
-      font-size: clamp(32px, 5vw, 64px);
-      font-weight: 950;
-      text-transform: uppercase;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-    }
-
-    .partner-facts {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .fact-item {
-      border-top: 1px solid rgba(255,255,255,0.3);
-      padding-top: 16px;
-    }
-
-    .fact-item strong {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      margin-bottom: 4px;
-    }
-
-    .fact-item p {
-      font-size: clamp(14px, 1.6vw, 18px);
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    /* ── SECTION HEADER ── */
-    .section-header {
-      padding: clamp(80px, 12vw, 160px) clamp(40px, 8vw, 100px) clamp(40px, 6vw, 80px);
-      max-width: 900px;
-    }
-
-    .section-label {
+    .ad-label {
       display: inline-block;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--toyota-red);
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .ad-title {
+      font-size: clamp(36px, 7vw, 96px);
+      font-weight: 950;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
       margin-bottom: 16px;
+      max-width: 800px;
     }
 
-    .section-header h2 {
-      font-size: clamp(28px, 5vw, 60px);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-    }
-
-    .section-header p {
-      font-size: clamp(15px, 1.6vw, 18px);
-      color: rgba(255,255,255,0.55);
-      margin-top: 16px;
-      line-height: 1.6;
-      max-width: 600px;
-    }
-
-    /* ── CONCEPT GRID ── */
-    .concepts {
-      padding: 0 clamp(40px, 8vw, 100px) clamp(80px, 12vw, 160px);
-    }
-
-    .concept-group {
-      margin-bottom: 80px;
-    }
-
-    .concept-group-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .concept-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2px;
-    }
-
-    .concept-card {
-      background: var(--grey-mid);
-      padding: 36px 32px;
-      transition: background 0.2s ease;
-      cursor: default;
-    }
-
-    .concept-card:hover {
-      background: #222;
-    }
-
-    .concept-card-emoji {
-      font-size: 28px;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .concept-card h3 {
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-    }
-
-    .concept-card .tagline {
-      font-size: 13px;
+    .ad-tagline {
+      font-size: clamp(14px, 2vw, 20px);
       font-weight: 400;
-      color: var(--toyota-red);
+      color: rgba(255,255,255,0.75);
       font-style: italic;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      max-width: 600px;
       line-height: 1.4;
     }
 
-    .concept-card p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.7;
-    }
-
-    .concept-card ul {
-      list-style: none;
-      margin-top: 14px;
+    .ad-bullets {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
     }
 
-    .concept-card ul li {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      padding-left: 14px;
+    .ad-bullet {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      padding: 5px 12px;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── SCREEN NUMBER ── */
+    .ad-number {
+      position: absolute;
+      top: clamp(80px, 10vw, 120px);
+      right: clamp(32px, 6vw, 72px);
+      font-size: clamp(80px, 14vw, 180px);
+      font-weight: 950;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      user-select: none;
+    }
+
+    /* ── DIVIDER — partnerinfo mellan annonser ── */
+    .divider-panel {
+      background: var(--red);
+      padding: clamp(40px, 6vw, 72px) clamp(32px, 6vw, 72px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .divider-panel h2 {
+      font-size: clamp(22px, 4vw, 48px);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .divider-facts {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .divider-fact strong {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+
+    .divider-fact p {
+      font-size: clamp(14px, 1.6vw, 18px);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* ── INTRO HERO ── */
+    .intro {
       position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .intro-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-hero.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .intro-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.5) 100%);
+    }
+
+    .intro-body {
+      position: relative;
+      z-index: 2;
+      padding: clamp(40px, 8vw, 100px);
+      padding-bottom: clamp(60px, 10vw, 120px);
+      width: 100%;
+    }
+
+    .intro-logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .intro-logos img { height: 24px; opacity: 0.9; }
+
+    .intro-logos .x {
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .intro-logos .partner-name {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .intro-body h1 {
+      font-size: clamp(48px, 10vw, 140px);
+      font-weight: 950;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .intro-body h1 em {
+      color: var(--red);
+      font-style: normal;
+    }
+
+    .intro-sub {
+      font-size: clamp(15px, 2vw, 20px);
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
       line-height: 1.5;
     }
 
-    .concept-card ul li::before {
-      content: '→';
+    .scroll-hint {
       position: absolute;
-      left: 0;
-      color: var(--toyota-red);
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       font-size: 10px;
-      top: 2px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
     }
 
-    /* ── EVENTSKÄRMAR ── */
-    .event-section {
-      background: #0a0a0a;
-      padding: clamp(60px, 10vw, 120px) clamp(40px, 8vw, 100px);
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .scroll-hint svg {
+      width: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      animation: bounce 2s ease-in-out infinite;
     }
 
-    .event-section .section-label {
-      margin-bottom: 16px;
+    @keyframes bounce {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(5px); }
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      padding: clamp(60px, 8vw, 100px) clamp(32px, 6vw, 72px) clamp(20px, 3vw, 40px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .section-title span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red);
       display: block;
+      margin-bottom: 10px;
     }
 
-    .event-section h2 {
-      font-size: clamp(28px, 4vw, 52px);
+    .section-title h2 {
+      font-size: clamp(24px, 4vw, 52px);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── PAKET ── */
+    .package {
+      background: #0a0a0a;
+      padding: clamp(60px, 8vw, 120px) clamp(32px, 6vw, 72px);
+    }
+
+    .package h2 {
+      font-size: clamp(28px, 5vw, 64px);
       font-weight: 950;
       text-transform: uppercase;
       letter-spacing: -0.02em;
       margin-bottom: 48px;
     }
 
-    .event-table {
-      width: 100%;
-      max-width: 900px;
-      border-collapse: collapse;
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      max-width: 1100px;
     }
 
-    .event-table th {
-      text-align: left;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      padding: 0 0 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    .pkg-item {
+      background: #0a0a0a;
+      padding: 32px 28px;
     }
 
-    .event-table td {
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 15px;
-      vertical-align: middle;
-    }
-
-    .event-table td:first-child { font-weight: 600; padding-right: 40px; }
-    .event-table td:nth-child(2) { color: var(--toyota-red); font-weight: 700; padding-right: 40px; }
-    .event-table td:last-child { color: rgba(255,255,255,0.55); font-size: 14px; }
-
-    /* ── PAKET ── */
-    .package-section {
-      background: var(--black);
-      padding: clamp(60px, 10vw, 120px) clamp(40px, 8vw, 100px);
-    }
-
-    .package-box {
-      max-width: 900px;
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: clamp(40px, 6vw, 72px);
-    }
-
-    .package-box h2 {
-      font-size: clamp(22px, 3.5vw, 42px);
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-      margin-bottom: 40px;
-    }
-
-    .package-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .package-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .package-item:last-child { border-bottom: none; }
-
-    .package-check {
-      color: var(--toyota-red);
-      font-size: 18px;
+    .pkg-check {
+      font-size: 22px;
+      color: var(--red);
       font-weight: 900;
-      flex-shrink: 0;
-      margin-top: 1px;
+      margin-bottom: 10px;
+      display: block;
     }
 
-    .package-item-text strong {
+    .pkg-item strong {
       display: block;
       font-size: 16px;
       font-weight: 700;
-      margin-bottom: 2px;
+      margin-bottom: 6px;
     }
 
-    .package-item-text span {
+    .pkg-item p {
       font-size: 13px;
       color: rgba(255,255,255,0.45);
-    }
-
-    .package-addon {
-      margin-top: 32px;
-      background: rgba(235,10,30,0.08);
-      border: 1px solid rgba(235,10,30,0.2);
-      padding: 20px 24px;
-    }
-
-    .package-addon p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
       line-height: 1.6;
     }
 
-    .package-addon strong {
-      color: var(--toyota-red);
+    .pkg-addon {
+      max-width: 1100px;
+      margin-top: 24px;
+      border: 1px solid rgba(235,10,30,0.25);
+      background: rgba(235,10,30,0.06);
+      padding: 20px 28px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
     }
 
+    .pkg-addon strong { color: var(--red); }
+
     /* ── FOOTER ── */
-    .site-footer {
+    footer {
       background: #050505;
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding: clamp(40px, 6vw, 80px) clamp(40px, 8vw, 100px);
+      padding: clamp(32px, 5vw, 64px) clamp(32px, 6vw, 72px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 20px;
     }
 
-    .site-footer img {
-      height: 22px;
-      width: auto;
-      opacity: 0.6;
-    }
+    footer img { height: 20px; opacity: 0.5; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.2); }
 
-    .site-footer p {
-      font-size: 12px;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.05em;
-    }
+    /* ── REVEAL ── */
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
 
-    /* ── REVEAL ANIMATION ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 600px) {
-      .concept-cards { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 36px; }
+    @media (max-width:600px) {
+      .intro-body h1 { font-size: 38px; }
+      .ad-title { font-size: 32px; }
+      .divider-facts { gap: 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-logos">
-      <img src="https://mooood.com/logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
-      <span class="divider">×</span>
-      <!-- Toyota wordmark text since no logo asset -->
-      <span style="font-size:18px;font-weight:900;letter-spacing:0.04em;color:rgba(255,255,255,0.85);">TOYOTA SYD</span>
+  <!-- NAV -->
+  <nav class="nav">
+    <img src="https://mooood.com/logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
+    <span class="nav-partner">× Toyota Syd</span>
+  </nav>
+
+
+  <!-- ══ INTRO HERO ══ -->
+  <section class="intro">
+    <div class="intro-bg"></div>
+    <div class="intro-overlay"></div>
+    <div class="intro-body">
+      <div class="intro-logos">
+        <img src="https://mooood.com/logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
+        <span class="x">×</span>
+        <span class="partner-name">TOYOTA SYD</span>
+      </div>
+      <h1>Synlighet<br>som <em>säljer</em></h1>
+      <p class="intro-sub">9 kampanjkoncept för Billbords digitala skärmar i södra Sverige — klara för skärm, social media och event.</p>
     </div>
-    <div class="hero-badge">Kommersiellt Partnerskap 2026</div>
-    <h1>Synlighet<br>som <em>säljer</em></h1>
-    <p class="hero-sub">
-      Alla era anläggningar. Alla våra skärmar. Kampanjkoncept som lever på digitala skärmar, sociala medier och i minnet.
-    </p>
-    <div class="hero-scroll">
+    <div class="scroll-hint">
       Scroll
       <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
   </section>
 
 
-  <!-- ══ PARTNERSKAP ══ -->
-  <section class="partner-panel">
-    <div class="partner-panel-inner">
-      <h2>Vad<br>ingår</h2>
-      <div class="partner-facts">
-        <div class="fact-item">
-          <strong>Skärmar</strong>
-          <p>Alla premium-skärmar i era städer — maxat upplägg, fast månadskostnad</p>
-        </div>
-        <div class="fact-item">
-          <strong>Tillägg</strong>
-          <p>Nya skärmar eller städer läggs till för <strong>9 990 kr/mån ex. moms</strong></p>
-        </div>
-        <div class="fact-item">
-          <strong>Eventskärmar</strong>
-          <p>12 veckors eventexponering per år — mässor, lanseringar, kampanjperioder</p>
-        </div>
-        <div class="fact-item">
-          <strong>Innehåll</strong>
-          <p>Kampanjmaterial producerat av Billbords — klart för skärm och sociala medier</p>
-        </div>
+  <!-- ══ PARTNERSKAP-PANEL ══ -->
+  <div class="divider-panel reveal">
+    <h2>Kommersiellt<br>Partnerskap</h2>
+    <div class="divider-facts">
+      <div class="divider-fact">
+        <strong>Skärmar</strong>
+        <p>Alla premium-skärmar<br>i era städer</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Eventskärmar</strong>
+        <p>12 veckor/år</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Tillägg</strong>
+        <p>9 990 kr/mån ex. moms</p>
       </div>
     </div>
-  </section>
-
-
-  <!-- ══ KONCEPT-RUBRIK ══ -->
-  <div class="section-header reveal">
-    <span class="section-label">Kampanjkoncept</span>
-    <h2>9 idéer för Toyota Syd</h2>
-    <p>Koncept redo att köras på Billbords skärmar och anpassas för Instagram, Facebook och TikTok.</p>
   </div>
 
 
-  <!-- ══ KONCEPT ══ -->
-  <section class="concepts">
+  <!-- ══ SÄSONG ══ -->
+  <div class="section-title reveal">
+    <span>Säsongsannonser</span>
+    <h2>Rätt känsla. Rätt tillfälle.</h2>
+  </div>
 
-    <div class="concept-group reveal">
-      <div class="concept-group-label">Säsongskoncepter</div>
-      <div class="concept-cards">
 
-        <div class="concept-card" style="padding:0;overflow:hidden;">
-          <div style="height:200px;overflow:hidden;position:relative;">
-            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-jul.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%);"></div>
-          </div>
-          <div style="padding:28px 28px 32px;">
-          <span class="concept-card-emoji">🎄</span>
-          <h3>Hem till dig</h3>
-          <p class="tagline">"Oavsett hur långt bort du hamnat — din Toyota tar dig hem."</p>
-          <p>Jul handlar om att komma hem. Inte om bilen — om känslan. Varma scener: familjemöten på uppfarten, snöiga landsvägar sent på kvällen.</p>
-          <ul>
-            <li>Toyota parkerad utanför upplyst hus i snön</li>
-            <li>Countdown: "X dagar kvar till jul — vi har öppet"</li>
-            <li>Lokal version per anläggning: "Toyota Malmö hälsar God Jul"</li>
-            <li>Social Media: "Vad är ditt julminne i bilen?" → UGC</li>
-          </ul>
-          </div>
-        </div>
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">❤️</span>
-          <h3>Kör dit hjärtat bär</h3>
-          <p class="tagline">"Det finaste du kan ge är en roadtrip."</p>
-          <p>Ingen blomma slår en spontan resa. Toyota som enabler för romantik och upplevelse — inte som ett fordon.</p>
-          <ul>
-            <li>Solnedgångsbild, två silhuetter. "Ge något som håller längre."</li>
-            <li>Boka provkörning 14 feb → få en present med</li>
-            <li>Oväntad vinkel: "För dig som kör ensam" — unna-dig-kampanj</li>
-          </ul>
-        </div>
-
-        <div class="concept-card" style="padding:0;overflow:hidden;">
-          <div style="height:200px;overflow:hidden;position:relative;">
-            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-sommar.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
-          </div>
-          <div style="padding:28px 28px 32px;">
-          <span class="concept-card-emoji">☀️</span>
-          <h3>Din semester börjar i bilen</h3>
-          <p class="tagline">"Det är inte destinationen. Det är de fem timmarna dit."</p>
-          <p>Toyota Syd äger vägen söderut. Hår som fladdrar, fönstret nedvevat, barn som sover bakpå. Inget manus. Bara liv.</p>
-          <ul>
-            <li>"Halmstad → Smygehuk: 2h 14min. Värt det."</li>
-            <li>"Vart kör du din Toyota i sommar?" — taggbar karta, UGC</li>
-            <li>Sommar-Reels med riktiga kunder och deras road trips</li>
-          </ul>
-          </div>
-        </div>
-
+  <!-- AD 1 — Jul -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-jul.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">01</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">God Jul — Toyota Syd</span>
+      <h2 class="ad-title">Hem<br>till dig</h2>
+      <p class="ad-tagline">"Oavsett hur långt bort du hamnat — din Toyota tar dig hem."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Juldagar</span>
+        <span class="ad-bullet">Alla anläggningar</span>
+        <span class="ad-bullet">Social media-version inkluderad</span>
+        <span class="ad-bullet">Countdown-variant</span>
       </div>
     </div>
-
-    <div class="concept-group reveal">
-      <div class="concept-group-label">Team &amp; Förtroende</div>
-      <div class="concept-cards">
-
-        <div class="concept-card" style="padding:0;overflow:hidden;">
-          <div style="height:200px;overflow:hidden;position:relative;">
-            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-team.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
-          </div>
-          <div style="padding:28px 28px 32px;">
-          <span class="concept-card-emoji">👥</span>
-          <h3>Möt din mekaniker</h3>
-          <p class="tagline">"Du vet vad Toyota Syd säljer. Men vet du vem som servar din bil?"</p>
-          <p>Ansikten bygger förtroende. En löpande serie där varje anläggning och avdelning presenteras — verkstad, sälj, kundtjänst, ledning.</p>
-          <ul>
-            <li>"Erik, 12 år på Toyota Malmö. Han har bytt fler bromsar än han kan räkna."</li>
-            <li>Video 15 sek: händer, arbete, ett äkta leende. Inget manus.</li>
-            <li>Ny person varje vecka. Lever sedan på LinkedIn och Instagram.</li>
-            <li>V1-4: Verkstad · V5-8: Sälj · V9-12: Kundtjänst · V13: Ledning</li>
-          </ul>
-          </div>
-        </div>
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">⭐</span>
-          <h3>Månadens Toyota Syd</h3>
-          <p class="tagline">"Inte en annons. En granne som berättar."</p>
-          <p>Varje månad lyfter vi en riktig kund. Deras Toyota. Deras liv. Deras historia.</p>
-          <ul>
-            <li>"Sofia från Helsingborg. Yaris Cross. Pendlar 4 dagar i veckan sedan 3 år."</li>
-            <li>QR-kod: "Läs Sofias historia" → kampanjsida / Instagram</li>
-            <li>Skapar UGC och organisk räckvidd varje månad</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="concept-group reveal">
-      <div class="concept-group-label">Aktivering &amp; Teknik</div>
-      <div class="concept-cards">
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">⚡</span>
-          <h3>Live-data på skärm</h3>
-          <p class="tagline">"Skärmar som pratar till dig just nu."</p>
-          <p>Dynamiskt innehåll som triggas av tid, väder och händelser.</p>
-          <ul>
-            <li>+20 grader → "Perfekt dag för en provkörning. Öppet till 18:00."</li>
-            <li>Fredag 16:00 → "Bästa kliv ut ur kontoret: Provsit i nya RAV4."</li>
-            <li>Lokal lagerstatus, veckans kampanjbil, öppettider per anläggning</li>
-          </ul>
-        </div>
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">🎯</span>
-          <h3>Provkörnings-utmaningen</h3>
-          <p class="tagline">"Sju bilar. Sju dagar. Välj din vinnare."</p>
-          <p>En veckas eventdriven kampanj — varje dag en ny Toyota-modell med QR-kod för direktbokning av provkörning.</p>
-          <ul>
-            <li>Perfekt för eventskärmarna (12 veckor/år)</li>
-            <li>Passar vid ny modell-lansering</li>
-            <li>QR → direktbokning → mätbar konvertering</li>
-          </ul>
-        </div>
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">🌍</span>
-          <h3>Vi bor här</h3>
-          <p class="tagline">"Vi säljer inte bara bilar. Vi kör på samma vägar som du."</p>
-          <p>Toyota Syd är inte ett globalt varumärke. Det är Malmö, Helsingborg, Kristianstad. Lokalt ägande, lokala ansikten, lokala platser.</p>
-          <ul>
-            <li>"Stortorget. Vi har parkerat här sedan 1987."</li>
-            <li>"Öresundsbron ser en hel del Toyotas varje dag."</li>
-            <li>Igenkänliga platser i varje stad + Toyota i bilden</li>
-          </ul>
-        </div>
-
-        <div class="concept-card">
-          <span class="concept-card-emoji">🚗</span>
-          <h3>Bilen som aldrig sover</h3>
-          <p class="tagline">"Medan du sover drömmer den om din nästa resa."</p>
-          <p>Billbords-skärmar lyser dygnet runt. Nattliga bilder av Toyota-modeller i urbana miljöer — gatljus, regn, reflektioner. Brand-building som jobbar 03:00.</p>
-          <ul>
-            <li>Stämningsfull — ingen text, inget erbjudande. Bara känslan.</li>
-            <li>Perfekt för premium-placeringar på högtrafikerade platser</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
   </section>
 
 
-  <!-- ══ EVENTSKÄRMAR ══ -->
-  <section class="event-section">
-    <span class="section-label">Eventskärmar — 12 veckor/år</span>
-    <h2 class="reveal">Årsplan för<br>eventexponering</h2>
-    <table class="event-table reveal">
-      <thead>
-        <tr>
-          <th>Tillfälle</th>
-          <th>Veckor</th>
-          <th>Rekommenderat koncept</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Vinterrea / Januari</td><td>2 v</td><td>Ny bil, ny start — bygg upp mot vår</td></tr>
-        <tr><td>Alla hjärtans dag</td><td>1 v</td><td>Kör dit hjärtat bär</td></tr>
-        <tr><td>Påsk / Vårstart</td><td>1 v</td><td>Din sommar börjar nu</td></tr>
-        <tr><td>Sommarkampanj</td><td>2 v</td><td>Din semester börjar i bilen</td></tr>
-        <tr><td>Ny modell-lansering</td><td>2 v</td><td>Provkörnings-utmaningen</td></tr>
-        <tr><td>Höstrea</td><td>1 v</td><td>Byt upp dig inför vintern</td></tr>
-        <tr><td>Jul</td><td>2 v</td><td>Hem till dig</td></tr>
-        <tr style="opacity:0.4"><td>Buffert</td><td>1 v</td><td>Friplaneringsbar</td></tr>
-      </tbody>
-    </table>
+  <!-- AD 2 — Alla hjärtans dag -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-valentine.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">02</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Alla Hjärtans Dag — Toyota Syd</span>
+      <h2 class="ad-title">Kör dit<br>hjärtat bär</h2>
+      <p class="ad-tagline">"Det finaste du kan ge är en roadtrip."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">14 februari</span>
+        <span class="ad-bullet">Provkörning som present</span>
+        <span class="ad-bullet">Unna-dig-vinkel</span>
+      </div>
+    </div>
   </section>
+
+
+  <!-- AD 3 — Sommar -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-sommar.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">03</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Sommar — Toyota Syd</span>
+      <h2 class="ad-title">Din semester<br>börjar i bilen</h2>
+      <p class="ad-tagline">"Det är inte destinationen. Det är de fem timmarna dit."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Juni–Augusti</span>
+        <span class="ad-bullet">RAV4 · Corolla Cross · Yaris Cross</span>
+        <span class="ad-bullet">UGC road trip-kampanj</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ TEAM ══ -->
+  <div class="section-title reveal">
+    <span>Team &amp; Förtroende</span>
+    <h2>Ansikten som bygger relationer</h2>
+  </div>
+
+
+  <!-- AD 4 — Möt mekanikern -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-team.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">04</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Team-presentation — Toyota Syd</span>
+      <h2 class="ad-title">Möt din<br>mekaniker</h2>
+      <p class="ad-tagline">"Du vet vad Toyota Syd säljer. Men vet du vem som servar din bil?"</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Löpande serie — ny person varje vecka</span>
+        <span class="ad-bullet">Verkstad · Sälj · Kundtjänst · Ledning</span>
+        <span class="ad-bullet">LinkedIn + Instagram-version</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- AD 5 — Säljteamet -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-salj.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">05</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Säljteamet — Toyota Syd</span>
+      <h2 class="ad-title">Presenterar<br>teamet</h2>
+      <p class="ad-tagline">"Vi är Toyota Syd. Och vi bor i samma stad som du."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Porträtt per säljare</span>
+        <span class="ad-bullet">Varje anläggning</span>
+        <span class="ad-bullet">QR → boka möte direkt</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ LOKALT & BRAND ══ -->
+  <div class="section-title reveal">
+    <span>Lokal förankring &amp; Brand</span>
+    <h2>Toyota Syd — vi hör hemma här</h2>
+  </div>
+
+
+  <!-- AD 6 — Vi bor här -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-lokal.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">06</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Lokal förankring — Toyota Syd</span>
+      <h2 class="ad-title">Vi bor<br>här</h2>
+      <p class="ad-tagline">"Vi säljer inte bara bilar. Vi kör på samma vägar som du."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Malmö · Helsingborg · Kristianstad</span>
+        <span class="ad-bullet">Igenkänliga platser</span>
+        <span class="ad-bullet">Lokal copy per stad</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- AD 7 — Bilen som aldrig sover -->
+  <section class="ad">
+    <div class="ad-img" style="background-image:url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-natt.png');"></div>
+    <div class="ad-overlay"></div>
+    <div class="ad-number">07</div>
+    <div class="ad-body reveal">
+      <span class="ad-label">Brand — Toyota Syd</span>
+      <h2 class="ad-title">Bilen som<br>aldrig sover</h2>
+      <p class="ad-tagline">"Medan du sover drömmer den om din nästa resa."</p>
+      <div class="ad-bullets">
+        <span class="ad-bullet">Nattliga placeringar</span>
+        <span class="ad-bullet">Premium brand-building</span>
+        <span class="ad-bullet">Ingen text — bara känslan</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ EVENT DIVIDER ══ -->
+  <div class="divider-panel reveal">
+    <h2>12 veckor<br>eventskärmar/år</h2>
+    <div class="divider-facts">
+      <div class="divider-fact">
+        <strong>Vinterrea</strong><p>2 v — Januari</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Alla hjärtans dag</strong><p>1 v — Februari</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Sommar</strong><p>2 v — Juni/Juli</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Lansering</strong><p>2 v — Ny modell</p>
+      </div>
+      <div class="divider-fact">
+        <strong>Jul</strong><p>2 v — December</p>
+      </div>
+    </div>
+  </div>
 
 
   <!-- ══ PAKET ══ -->
-  <section class="package-section">
-    <div class="package-box reveal">
-      <h2>Vad Toyota Syd får</h2>
-      <div class="package-items">
-        <div class="package-item">
-          <span class="package-check">✓</span>
-          <div class="package-item-text">
-            <strong>Maximal synlighet</strong>
-            <span>Alla premium-skärmar i era städer — fast månadskostnad, inga överraskningar</span>
-          </div>
-        </div>
-        <div class="package-item">
-          <span class="package-check">✓</span>
-          <div class="package-item-text">
-            <strong>12 veckors eventskärmar/år</strong>
-            <span>Planeras tillsammans med Toyota Syd — mässor, lanseringar, kampanjperioder</span>
-          </div>
-        </div>
-        <div class="package-item">
-          <span class="package-check">✓</span>
-          <div class="package-item-text">
-            <strong>Kreativt innehåll — skärm + sociala medier</strong>
-            <span>Allt material produceras av Billbords och levereras klart för alla kanaler</span>
-          </div>
-        </div>
-        <div class="package-item">
-          <span class="package-check">✓</span>
-          <div class="package-item-text">
-            <strong>Lokal relevans</strong>
-            <span>Rätt stad, rätt anläggning, rätt budskap — per skärm och per tillfälle</span>
-          </div>
-        </div>
-        <div class="package-item">
-          <span class="package-check">✓</span>
-          <div class="package-item-text">
-            <strong>Team-presentationer</strong>
-            <span>Humanisera varumärket — ansikten och berättelser från varje anläggning</span>
-          </div>
-        </div>
+  <section class="package">
+    <h2 class="reveal">Vad Toyota<br>Syd får</h2>
+    <div class="package-grid reveal">
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>Alla premium-skärmar</strong>
+        <p>Maximal synlighet i era städer — fast månadskostnad, inga överraskningar</p>
       </div>
-
-      <div class="package-addon">
-        <p>Nya skärmar eller städer utanför basupplägget tillkommer med <strong>9 990 kr/mån ex. moms</strong> per tillägg.</p>
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>12 veckors eventskärmar/år</strong>
+        <p>Planeras med Toyota Syd — mässor, lanseringar, kampanjperioder</p>
       </div>
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>Kreativt innehåll</strong>
+        <p>Producerat av Billbords — klart för OOH-skärmar och sociala medier</p>
+      </div>
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>Lokal relevans</strong>
+        <p>Rätt stad, rätt anläggning, rätt budskap — per skärm och tillfälle</p>
+      </div>
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>Team-annonser</strong>
+        <p>Löpande serie — humanisera varje anläggning med riktiga ansikten</p>
+      </div>
+      <div class="pkg-item">
+        <span class="pkg-check">✓</span>
+        <strong>Säsongsannonser</strong>
+        <p>Jul · Alla hjärtans dag · Sommar · Höst — klara att aktivera</p>
+      </div>
+    </div>
+    <div class="pkg-addon reveal">
+      Tilläggsskärmar eller nya städer utanför basupplägget: <strong>9 990 kr/mån ex. moms</strong> per tillägg.
     </div>
   </section>
 
 
   <!-- ══ FOOTER ══ -->
-  <footer class="site-footer">
+  <footer>
     <div>
       <img src="https://mooood.com/logos/billbords_logotype_white_rgb.png" alt="Billbords">
       <p style="margin-top:8px">Billbords × Toyota Syd — Kommersiellt Partnerskap 2026</p>
@@ -824,12 +683,9 @@
       var els = document.querySelectorAll('.reveal');
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.08 });
       els.forEach(function (el) { obs.observe(el); });
     })();
   </script>
