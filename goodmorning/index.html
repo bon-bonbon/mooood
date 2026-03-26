@@ -38,7 +38,6 @@
       font-weight: 300; font-style: normal; font-display: swap;
     }
 
-    /* ── VARIABLER ─────────────────────────────────────── */
     :root {
       --blue:     #3D64FD;
       --black:    #000000;
@@ -53,646 +52,150 @@
       --inner:    900px;
     }
 
-    /* ── RESET ─────────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
     body { font-family: var(--font); font-weight: 400; background: var(--black); color: var(--offwhite); overflow-x: hidden; }
 
-    /* ── REVEAL ────────────────────────────────────────── */
     .reveal { opacity: 0; transition: opacity 0.8s ease; }
     .reveal.visible { opacity: 1; }
 
-    /* ══════════════════════════════════════════════════════
-       HERO ZOOM INTRO
-    ══════════════════════════════════════════════════════ */
-    .hero-pin {
-      position: relative;
-      height: 250vh;
-    }
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-      background: var(--black);
-    }
-    .hero-eye {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 38vmin; height: 38vmin;
-      transform: translate(-50%, -50%) scale(1);
-      transform-origin: center center;
-      will-change: transform;
-      border-radius: 50%;
-      overflow: hidden;
-    }
-    .hero-eye img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .hero-radial-fade {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: radial-gradient(circle at center, #000 0%, transparent 0%);
-      pointer-events: none;
-    }
-    .hero-reveal {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .hero-reveal img {
-      width: clamp(160px, 28vw, 280px);
-      margin-bottom: 20px;
-    }
-    .hero-reveal .hero-tagline {
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: clamp(0.7rem, 1.4vw, 0.9rem);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(252,250,238,0.5);
-    }
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.35);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: bounce 2.5s ease-in-out infinite;
-      transition: opacity 0.4s ease;
-    }
-    .scroll-indicator svg {
-      width: 20px; height: 20px;
-      stroke: currentColor; fill: none; stroke-width: 2;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(8px); }
-    }
+    .hero-pin { position: relative; height: 250vh; }
+    .hero-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--black); }
+    .hero-eye { position: absolute; top: 50%; left: 50%; width: 38vmin; height: 38vmin; transform: translate(-50%, -50%) scale(1); transform-origin: center center; will-change: transform; border-radius: 50%; overflow: hidden; }
+    .hero-eye img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .hero-radial-fade { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at center, #000 0%, transparent 0%); pointer-events: none; }
+    .hero-reveal { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; opacity: 0; pointer-events: none; }
+    .hero-reveal img { width: clamp(160px, 28vw, 280px); margin-bottom: 20px; }
+    .hero-reveal .hero-tagline { font-family: var(--font); font-weight: 400; font-size: clamp(0.7rem, 1.4vw, 0.9rem); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(252,250,238,0.5); }
+    .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.35); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; animation: bounce 2.5s ease-in-out infinite; transition: opacity 0.4s ease; }
+    .scroll-indicator svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
-    /* ── SECTION LABEL (global) ────────────────────────── */
-    .label {
-      display: block;
-      font-weight: 700;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.45;
-      margin-bottom: 18px;
-    }
+    .label { display: block; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.45; margin-bottom: 18px; }
     .label-light { color: var(--offwhite); }
     .label-dark  { color: var(--black); }
 
-    /* ══════════════════════════════════════════════════════
-       1. HERO
-    ══════════════════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 560px;
-      overflow: hidden;
-      background: var(--black);
-    }
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.15) 0%,
-        rgba(0,0,0,0.05) 35%,
-        rgba(0,0,0,0.7) 75%,
-        rgba(0,0,0,0.97) 100%
-      );
-    }
-    .hero-body {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: clamp(40px, 8vw, 80px) clamp(24px, 6vw, 80px) clamp(48px, 8vw, 80px);
-      max-width: 1100px;
-    }
-    .hero-date {
-      font-weight: 400;
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted-w);
-      margin-bottom: 14px;
-      display: block;
-    }
-    .hero-title {
-      font-weight: 950;
-      font-size: clamp(3rem, 9vw, 8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: var(--offwhite);
-    }
+    .hero { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: var(--black); }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.97) 100%); }
+    .hero-body { position: absolute; bottom: 0; left: 0; right: 0; padding: clamp(40px, 8vw, 80px) clamp(24px, 6vw, 80px) clamp(48px, 8vw, 80px); max-width: 1100px; }
+    .hero-date { font-weight: 400; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-w); margin-bottom: 14px; display: block; }
+    .hero-title { font-weight: 950; font-size: clamp(3rem, 9vw, 8rem); letter-spacing: -0.04em; line-height: 1.1; text-transform: uppercase; color: var(--offwhite); }
     .hero-title em { color: var(--blue); font-style: normal; }
-    .hero-subtitle {
-      margin-top: 20px;
-      font-weight: 300;
-      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-      color: var(--muted-w);
-      max-width: 44ch;
-      line-height: 1.6;
-    }
+    .hero-subtitle { margin-top: 20px; font-weight: 300; font-size: clamp(0.9rem, 1.6vw, 1.1rem); color: var(--muted-w); max-width: 44ch; line-height: 1.6; }
 
-    /* ══════════════════════════════════════════════════════
-       2. INTÄKTER — offwhite bg
-    ══════════════════════════════════════════════════════ */
-    .section-revenue {
-      background: var(--offwhite);
-      color: var(--black);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-    }
+    .section-revenue { background: var(--offwhite); color: var(--black); padding: var(--pad) clamp(24px, 6vw, 80px); }
     .section-revenue .inner { max-width: var(--inner); margin: 0 auto; }
-
-    .rev-heading {
-      padding-top: 0.15em;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
+    .rev-heading { padding-top: 0.15em; font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -0.04em; line-height: 1.2; text-transform: uppercase; margin-bottom: 48px; }
     .rev-heading span { color: var(--blue); }
-
-    .rev-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px;
-      background: rgba(0,0,0,0.1);
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-    .rev-cell {
-      background: var(--offwhite);
-      padding: 32px 28px;
-    }
-    .rev-cell-label {
-      font-weight: 700;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .rev-cell-value {
-      font-weight: 900;
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: var(--black);
-    }
+    .rev-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.1); }
+    .rev-cell { background: var(--offwhite); padding: 32px 28px; }
+    .rev-cell-label { font-weight: 700; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .rev-cell-value { font-weight: 900; font-size: clamp(1.6rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; line-height: 1; color: var(--black); }
     .rev-cell-value.accent { color: var(--blue); }
-    .rev-cell-sub {
-      margin-top: 6px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* Progress */
+    .rev-cell-sub { margin-top: 6px; font-size: 0.8rem; color: var(--muted); }
     .progress-wrap { margin-top: 32px; }
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
+    .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
     .progress-meta-label { font-size: 0.8rem; color: var(--muted); }
-    .progress-meta-pct {
-      font-weight: 900;
-      font-size: 1.6rem;
-      letter-spacing: -0.04em;
-      color: var(--black);
-    }
-    .progress-track {
-      height: 4px;
-      background: rgba(0,0,0,0.12);
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--blue);
-    }
+    .progress-meta-pct { font-weight: 900; font-size: 1.6rem; letter-spacing: -0.04em; color: var(--black); }
+    .progress-track { height: 4px; background: rgba(0,0,0,0.12); }
+    .progress-fill { height: 100%; background: var(--blue); }
     .progress-fill.warn { background: #E8963A; }
     .progress-fill.strong { background: #3DFD7E; }
 
-    /* ══════════════════════════════════════════════════════
-       3. OFFERTER — svart bg
-    ══════════════════════════════════════════════════════ */
-    .section-proposals {
-      background: var(--black);
-      color: var(--offwhite);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-    }
+    .section-proposals { background: var(--black); color: var(--offwhite); padding: var(--pad) clamp(24px, 6vw, 80px); }
     .section-proposals .inner { max-width: var(--inner); margin: 0 auto; }
-
-    .prop-heading {
-      padding-top: 0.15em;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
-    /* Summary strip */
-    .prop-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid rgba(252,250,238,0.1);
-      margin-bottom: 40px;
-    }
-    .prop-strip-cell {
-      padding: 28px 24px;
-      border-right: 1px solid rgba(252,250,238,0.1);
-    }
+    .prop-heading { padding-top: 0.15em; font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -0.04em; line-height: 1.2; text-transform: uppercase; margin-bottom: 48px; }
+    .prop-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(252,250,238,0.1); margin-bottom: 40px; }
+    .prop-strip-cell { padding: 28px 24px; border-right: 1px solid rgba(252,250,238,0.1); }
     .prop-strip-cell:last-child { border-right: none; }
-    .prop-strip-num {
-      font-weight: 900;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
+    .prop-strip-num { font-weight: 900; font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.05em; line-height: 1; }
     .prop-strip-num.red    { color: #FF4D2E; }
     .prop-strip-num.amber  { color: #FFB020; }
     .prop-strip-num.green  { color: #3DFD7E; }
-    .prop-strip-txt {
-      margin-top: 6px;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      color: var(--muted-w);
-    }
-
-    /* Proposal cards */
+    .prop-strip-txt { margin-top: 6px; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--muted-w); }
     .prop-list { display: flex; flex-direction: column; gap: 2px; }
-    .prop-card {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 24px;
-      padding: 24px 28px;
-      background: rgba(252,250,238,0.03);
-      border: 1px solid rgba(252,250,238,0.07);
-      transition: background 0.2s;
-    }
+    .prop-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; padding: 24px 28px; background: rgba(252,250,238,0.03); border: 1px solid rgba(252,250,238,0.07); transition: background 0.2s; }
     .prop-card:hover { background: rgba(252,250,238,0.06); }
     .prop-card.urgent { border-color: rgba(255,77,46,0.3); background: rgba(255,77,46,0.04); }
     .prop-card.warn   { border-color: rgba(255,176,32,0.3); background: rgba(255,176,32,0.04); }
-
-    .prop-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .prop-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .dot-red   { background: #FF4D2E; box-shadow: 0 0 8px #FF4D2E; }
     .dot-amber { background: #FFB020; box-shadow: 0 0 8px #FFB020; }
-
-    .prop-name {
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
-      color: var(--offwhite);
-      text-transform: uppercase;
-    }
-    .prop-meta {
-      margin-top: 3px;
-      font-size: 0.75rem;
-      color: var(--muted-w);
-    }
+    .prop-name { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; color: var(--offwhite); text-transform: uppercase; }
+    .prop-meta { margin-top: 3px; font-size: 0.75rem; color: var(--muted-w); }
     .prop-right { text-align: right; }
-    .prop-value {
-      font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: -0.03em;
-      color: var(--offwhite);
-    }
-    .prop-expires {
-      margin-top: 3px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
+    .prop-value { font-weight: 900; font-size: 1.3rem; letter-spacing: -0.03em; color: var(--offwhite); }
+    .prop-expires { margin-top: 3px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
     .expires-red   { color: #FF4D2E; }
     .expires-amber { color: #FFB020; }
 
-    .prop-empty {
-      padding: 40px;
-      border: 1px solid rgba(61,253,126,0.2);
-      background: rgba(61,253,126,0.04);
-      text-align: center;
-    }
-    .prop-empty-icon { font-size: 1.8rem; margin-bottom: 12px; }
-    .prop-empty h3 {
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: #3DFD7E;
-      margin-bottom: 8px;
-    }
-    .prop-empty p { font-size: 0.85rem; color: var(--muted-w); line-height: 1.7; }
-
-    /* ══════════════════════════════════════════════════════
-       4. RANKING — offwhite bg
-    ══════════════════════════════════════════════════════ */
-    .section-ranking {
-      background: var(--offwhite);
-      color: var(--black);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-    }
+    .section-ranking { background: var(--offwhite); color: var(--black); padding: var(--pad) clamp(24px, 6vw, 80px); }
     .section-ranking .inner { max-width: var(--inner); margin: 0 auto; }
-
-    .rank-heading {
-      padding-top: 0.15em;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
+    .rank-heading { padding-top: 0.15em; font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -0.04em; line-height: 1.2; text-transform: uppercase; margin-bottom: 48px; }
     .rank-list { display: flex; flex-direction: column; gap: 2px; }
-    .rank-row {
-      display: grid;
-      grid-template-columns: 56px 1fr 180px;
-      align-items: center;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
+    .rank-row { display: grid; grid-template-columns: 56px 1fr 180px; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .rank-row:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
-
-    .rank-num {
-      font-weight: 950;
-      font-size: 2.2rem;
-      letter-spacing: -0.05em;
-      color: rgba(0,0,0,0.1);
-    }
+    .rank-num { font-weight: 950; font-size: 2.2rem; letter-spacing: -0.05em; color: rgba(0,0,0,0.1); }
     .rank-num.gold { color: #C8950A; }
-
-    .rank-name {
-      font-weight: 900;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--black);
-    }
+    .rank-name { font-weight: 900; font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.03em; text-transform: uppercase; color: var(--black); }
     .rank-bar-wrap { margin-top: 8px; }
-    .rank-bar {
-      height: 2px;
-      background: rgba(0,0,0,0.1);
-    }
+    .rank-bar { height: 2px; background: rgba(0,0,0,0.1); }
     .rank-bar-fill { height: 100%; background: var(--blue); }
     .rank-bar-fill.gold-bar { background: #C8950A; }
     .rank-bar-fill.green-bar { background: #3DFD7E; }
-
     .rank-right { text-align: right; }
-    .rank-value {
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: -0.04em;
-      color: var(--black);
-    }
-    .rank-budget {
-      margin-top: 3px;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
+    .rank-value { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.04em; color: var(--black); }
+    .rank-budget { margin-top: 3px; font-size: 0.7rem; color: var(--muted); }
 
-    /* ══════════════════════════════════════════════════════
-       5. TREND — svart bg
-    ══════════════════════════════════════════════════════ */
-    .section-trend {
-      background: var(--black);
-      color: var(--offwhite);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-    }
+    .section-trend { background: var(--black); color: var(--offwhite); padding: var(--pad) clamp(24px, 6vw, 80px); }
     .section-trend .inner { max-width: var(--inner); margin: 0 auto; }
-
-    .trend-heading {
-      padding-top: 0.15em;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
-    .trend-day-1 {
-      padding: 40px;
-      border: 1px solid rgba(61,100,253,0.35);
-      background: rgba(61,100,253,0.05);
-      text-align: center;
-    }
-    .trend-day-1 .trend-icon {
-      font-size: 1.8rem;
-      margin-bottom: 16px;
-    }
-    .trend-day-1 h3 {
-      font-weight: 900;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 12px;
-    }
-    .trend-day-1 p {
-      font-size: 0.85rem;
-      color: var(--muted-w);
-      line-height: 1.7;
-    }
-    .trend-day-1 strong { color: var(--offwhite); }
-
-    .trend-snapshot {
-      border: 1px solid rgba(252,250,238,0.1);
-      padding: 32px 28px;
-      margin-bottom: 2px;
-    }
-    .trend-snapshot-date {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted-w);
-      margin-bottom: 20px;
-    }
-    .trend-snapshot-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .tsn-val {
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: -0.04em;
-      color: var(--offwhite);
-    }
-    .tsn-lbl {
-      margin-top: 4px;
-      font-size: 0.65rem;
-      color: var(--muted-w);
-    }
-    .tsn-delta {
-      margin-top: 4px;
-      font-size: 0.65rem;
-      font-weight: 700;
-    }
+    .trend-heading { padding-top: 0.15em; font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -0.04em; line-height: 1.2; text-transform: uppercase; margin-bottom: 48px; }
+    .trend-snapshot { border: 1px solid rgba(252,250,238,0.1); padding: 32px 28px; margin-bottom: 2px; }
+    .trend-snapshot-date { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted-w); margin-bottom: 20px; }
+    .trend-snapshot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .tsn-val { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.04em; color: var(--offwhite); }
+    .tsn-lbl { margin-top: 4px; font-size: 0.65rem; color: var(--muted-w); }
+    .tsn-delta { margin-top: 4px; font-size: 0.65rem; font-weight: 700; }
     .tsn-delta.up { color: #3DFD7E; }
     .tsn-delta.down { color: #FF4D2E; }
+    .trend-analysis { padding: 32px 28px; margin-top: 2px; border: 1px solid rgba(61,253,126,0.25); background: rgba(61,253,126,0.04); }
+    .trend-analysis h3 { font-weight: 900; font-size: 1rem; letter-spacing: -0.02em; text-transform: uppercase; color: #3DFD7E; margin-bottom: 12px; }
+    .trend-analysis p { font-size: 0.9rem; color: var(--muted-w); line-height: 1.75; }
+    .trend-analysis strong { color: var(--offwhite); }
 
-    /* ══════════════════════════════════════════════════════
-       6. REKOMMENDATIONER — offwhite bg
-    ══════════════════════════════════════════════════════ */
-    .section-recs {
-      background: var(--offwhite);
-      color: var(--black);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-    }
+    .section-recs { background: var(--offwhite); color: var(--black); padding: var(--pad) clamp(24px, 6vw, 80px); }
     .section-recs .inner { max-width: var(--inner); margin: 0 auto; }
-
-    .rec-heading {
-      padding-top: 0.15em;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
+    .rec-heading { padding-top: 0.15em; font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -0.04em; line-height: 1.2; text-transform: uppercase; margin-bottom: 48px; }
     .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .rec-card {
-      padding: 40px 36px;
-      background: var(--offwhite);
-      border: 1px solid rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .rec-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
+    .rec-card { padding: 40px 36px; background: var(--offwhite); border: 1px solid rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+    .rec-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .rec-card.card-1::after { background: #FF4D2E; }
     .rec-card.card-2::after { background: var(--blue); }
-
-    .rec-num {
-      font-weight: 950;
-      font-size: 5rem;
-      letter-spacing: -0.06em;
-      line-height: 1;
-      color: rgba(0,0,0,0.06);
-      position: absolute;
-      bottom: 12px; right: 20px;
-    }
-
-    .rec-tag {
-      font-weight: 700;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .rec-title {
-      font-weight: 900;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 16px;
-    }
-    .rec-body {
-      font-weight: 400;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: #444;
-    }
+    .rec-num { font-weight: 950; font-size: 5rem; letter-spacing: -0.06em; line-height: 1; color: rgba(0,0,0,0.06); position: absolute; bottom: 12px; right: 20px; }
+    .rec-tag { font-weight: 700; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .rec-title { font-weight: 900; font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.03em; line-height: 1.2; text-transform: uppercase; color: var(--black); margin-bottom: 16px; }
+    .rec-body { font-weight: 400; font-size: 0.95rem; line-height: 1.75; color: #444; }
     .rec-body strong { color: var(--black); }
 
-    /* ══════════════════════════════════════════════════════
-       7. SIGN OFF — svart bg
-    ══════════════════════════════════════════════════════ */
-    .section-signoff {
-      background: var(--black);
-      color: var(--offwhite);
-      padding: var(--pad) clamp(24px, 6vw, 80px);
-      text-align: center;
-      overflow: visible;
-    }
-    .signoff-quote {
-      font-weight: 900;
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      letter-spacing: -0.04em;
-      line-height: 1.25;
-      text-transform: uppercase;
-      max-width: 700px;
-      margin: 0 auto 24px;
-      padding-top: 0.2em;
-      overflow: visible;
-    }
+    .section-signoff { background: var(--black); color: var(--offwhite); padding: var(--pad) clamp(24px, 6vw, 80px); text-align: center; overflow: visible; }
+    .signoff-quote { font-weight: 900; font-size: clamp(1.8rem, 4vw, 3.2rem); letter-spacing: -0.04em; line-height: 1.25; text-transform: uppercase; max-width: 700px; margin: 0 auto 24px; padding-top: 0.2em; overflow: visible; }
     .signoff-quote span { color: var(--pink); }
-    .signoff-sub {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted-w);
-    }
+    .signoff-sub { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted-w); }
 
-    /* ── FOOTER ────────────────────────────────────────── */
-    footer {
-      background: var(--black);
-      border-top: 1px solid rgba(252,250,238,0.06);
-      padding: 28px clamp(24px, 6vw, 80px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    footer span {
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(252,250,238,0.2);
-    }
+    .data-note { display: inline-block; background: rgba(255,176,32,0.12); border: 1px solid rgba(255,176,32,0.3); color: #FFB020; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; margin-bottom: 24px; }
 
-    /* ── RESPONSIVE ────────────────────────────────────── */
+    footer { background: var(--black); border-top: 1px solid rgba(252,250,238,0.06); padding: 28px clamp(24px, 6vw, 80px); display: flex; justify-content: space-between; align-items: center; }
+    footer span { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(252,250,238,0.2); }
+
     @media (max-width: 768px) {
-      .rev-grid       { grid-template-columns: 1fr; }
-      .prop-strip     { grid-template-columns: 1fr 1fr 1fr; }
-      .rank-row       { grid-template-columns: 36px 1fr; }
-      .rank-right     { display: none; }
-      .rec-grid       { grid-template-columns: 1fr; }
-      .prop-card      { grid-template-columns: auto 1fr; }
-      .prop-right     { display: none; }
+      .rev-grid { grid-template-columns: 1fr; }
+      .prop-strip { grid-template-columns: 1fr 1fr 1fr; }
+      .rank-row { grid-template-columns: 36px 1fr; }
+      .rank-right { display: none; }
+      .rec-grid { grid-template-columns: 1fr; }
+      .prop-card { grid-template-columns: auto 1fr; }
+      .prop-right { display: none; }
       .trend-snapshot-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -720,21 +223,22 @@
   <!-- ══ 1. HERO ══════════════════════════════════════════ -->
   <section class="hero">
     <img class="hero-img"
-      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png?v=20260325"
-      alt="Dramatisk soluppgång över svenska fjäll, gyllene morgonljus bryter över topparna med rosa och orange himmel">
+      src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/goodmorning/hero.png?v=20260326"
+      alt="Snötäckta fjälltoppar badar i gyllene morgonljus, frusen sjö reflekterar soluppgången">
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <span class="hero-date" id="hero-date"></span>
       <h1 class="hero-title">God morgon,<br><em>Nikk.</em></h1>
-      <p class="hero-subtitle">Glad onsdag — 95% av marsmålet i mål med 6 dagar kvar. Det fattas bara 131 tkr. En deal så är ni hemma.</p>
+      <p class="hero-subtitle">Glad torsdag — 95.1% av marsmålet i mål med 5 dagar kvar. Det fattas bara 131 060 kr. En deal är allt som behövs.</p>
     </div>
   </section>
 
   <!-- ══ 2. INTÄKTER ═══════════════════════════════════════ -->
   <section class="section-revenue">
     <div class="inner">
-      <span class="label label-dark">Intäkter · Live data 25 mars 2026</span>
-      <h2 class="rev-heading reveal">Mars 2026 —<br><span>95% av mål</span></h2>
+      <span class="data-note">⚠ Data från 25 mars — DOS-servern var tillfälligt nere kl 06:00</span>
+      <span class="label label-dark">Intäkter · Data 25 mars 2026</span>
+      <h2 class="rev-heading reveal">Mars 2026 —<br><span>95.1% av mål</span></h2>
 
       <div class="rev-grid reveal">
         <div class="rev-cell">
@@ -745,12 +249,12 @@
         <div class="rev-cell">
           <div class="rev-cell-label">Marsmål</div>
           <div class="rev-cell-value">2 700 000 kr</div>
-          <div class="rev-cell-sub">ex. moms · 6 dagar kvar i mars</div>
+          <div class="rev-cell-sub">ex. moms · 5 dagar kvar i mars</div>
         </div>
         <div class="rev-cell">
           <div class="rev-cell-label">Total omsättning 2026</div>
-          <div class="rev-cell-value">27,8 Mkr</div>
-          <div class="rev-cell-sub">alla WON deals t.o.m. idag</div>
+          <div class="rev-cell-value">27.8 Mkr</div>
+          <div class="rev-cell-sub">alla WON deals t.o.m. 25 mars</div>
         </div>
       </div>
 
@@ -769,8 +273,8 @@
   <!-- ══ 3. OFFERTER ══════════════════════════════════════ -->
   <section class="section-proposals">
     <div class="inner">
-      <span class="label label-light">Offerter · Live data 25 mars 2026</span>
-      <h2 class="prop-heading reveal">30 aktiva offerter —<br>inga löper ut idag.</h2>
+      <span class="label label-light">Offerter · Data 25 mars 2026</span>
+      <h2 class="prop-heading reveal">30 aktiva offerter —<br>0 löper ut denna vecka.</h2>
 
       <div class="prop-strip reveal">
         <div class="prop-strip-cell">
@@ -779,27 +283,126 @@
         </div>
         <div class="prop-strip-cell">
           <div class="prop-strip-num green">0</div>
-          <div class="prop-strip-txt">Löper ut inom 7 dagar — fritt</div>
+          <div class="prop-strip-txt">Löper ut inom 7 dagar</div>
         </div>
         <div class="prop-strip-cell">
-          <div class="prop-strip-num amber">2,71 Mkr</div>
+          <div class="prop-strip-num amber">2.7 Mkr</div>
           <div class="prop-strip-txt">Värde i utgångna offerter</div>
         </div>
       </div>
 
       <div class="prop-list reveal">
-        <div class="prop-empty">
-          <div class="prop-empty-icon">✅</div>
-          <h3>Inga kritiska offerter just nu</h3>
-          <p>
-            Inga offerter löper ut den närmaste veckan — pipeline är rent på urgency.
-            Det finns dock <strong>24 utgångna offerter</strong> på totalt <strong>2 712 965 kr</strong>
-            som väntar på uppföljning. Dessa är inte förlorade — bara vilande.
-            En uppringningsrunda kan återaktivera en stor del av värdet.
-            <br><br>
-            <strong>Pipeline ökade med +458 tkr sedan 23 mars</strong> — nytt material har kommit in.
-            Med 3,87 Mkr i aktivt pipeline och bara 131 tkr kvar till marsmålet är läget starkt.
-          </p>
+        
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Elon Karlshamn</div>
+            <div class="prop-meta">Nikk Matson · VIEWED</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">119 880 kr</div>
+            <div class="prop-expires ">Löper ut om 15 dagar</div>
+          </div>
+        </div>
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Svenska kyrkan Landskrona församling</div>
+            <div class="prop-meta">Alex Arvidsson · SENT</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">10 000 kr</div>
+            <div class="prop-expires ">Löper ut om 19 dagar</div>
+          </div>
+        </div>
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Identity media</div>
+            <div class="prop-meta">Pål Vireberg · VIEWED</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">430 341 kr</div>
+            <div class="prop-expires ">Löper ut om 20 dagar</div>
+          </div>
+        </div>
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Motor Trend</div>
+            <div class="prop-meta">Alex Arvidsson · SENT</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">139 990 kr</div>
+            <div class="prop-expires ">Löper ut om 23 dagar</div>
+          </div>
+        </div>
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Vänsterpartiet Växjö</div>
+            <div class="prop-meta">Nikk Matson · VIEWED</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">50 000 kr</div>
+            <div class="prop-expires ">Löper ut om 25 dagar</div>
+          </div>
+        </div>
+        <div class="prop-card ">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.2);"></div>
+          <div>
+            <div class="prop-name">Sparbanken i Karlshamn</div>
+            <div class="prop-meta">Nikk Matson · SENT</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">407 820 kr</div>
+            <div class="prop-expires ">Löper ut om 28 dagar</div>
+          </div>
+        </div>
+        <h3 style="font-weight:900;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(252,250,238,0.4);margin:32px 0 16px;">Utgångna — kan återaktiveras</h3>
+        <div class="prop-card" style="opacity:0.6;">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.15);"></div>
+          <div>
+            <div class="prop-name">Brinova</div>
+            <div class="prop-meta">Kim Aldén Engström · Gick ut för 12 dagar sedan</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">1 027 290 kr</div>
+            <div class="prop-expires" style="color:rgba(252,250,238,0.3);">Utgången</div>
+          </div>
+        </div>
+        <div class="prop-card" style="opacity:0.6;">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.15);"></div>
+          <div>
+            <div class="prop-name">Luotea</div>
+            <div class="prop-meta">Kim Aldén Engström · Gick ut för 42 dagar sedan</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">300 000 kr</div>
+            <div class="prop-expires" style="color:rgba(252,250,238,0.3);">Utgången</div>
+          </div>
+        </div>
+        <div class="prop-card" style="opacity:0.6;">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.15);"></div>
+          <div>
+            <div class="prop-name">Nordlo</div>
+            <div class="prop-meta">Nikk Matson · Gick ut för 40 dagar sedan</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">179 990 kr</div>
+            <div class="prop-expires" style="color:rgba(252,250,238,0.3);">Utgången</div>
+          </div>
+        </div>
+        <div class="prop-card" style="opacity:0.6;">
+          <div class="prop-dot" style="background:rgba(252,250,238,0.15);"></div>
+          <div>
+            <div class="prop-name">Region Kronoberg - Liberalerna</div>
+            <div class="prop-meta">Nikk Matson · Gick ut för 39 dagar sedan</div>
+          </div>
+          <div class="prop-right">
+            <div class="prop-value">159 990 kr</div>
+            <div class="prop-expires" style="color:rgba(252,250,238,0.3);">Utgången</div>
+          </div>
         </div>
       </div>
     </div>
@@ -808,11 +411,10 @@
   <!-- ══ 4. RANKING ════════════════════════════════════════ -->
   <section class="section-ranking">
     <div class="inner">
-      <span class="label label-dark">Säljare · Mars 2026 · Live data</span>
+      <span class="label label-dark">Säljare · Mars 2026 · Data 25 mars</span>
       <h2 class="rank-heading reveal">Mars 2026 —<br>vem leder?</h2>
-
       <div class="rank-list reveal">
-
+        
         <div class="rank-row">
           <div class="rank-num gold">1</div>
           <div>
@@ -823,26 +425,24 @@
           </div>
           <div class="rank-right">
             <div class="rank-value">959 273 kr</div>
-            <div class="rank-budget">av 1 200 000 · 80%</div>
+            <div class="rank-budget">av 1 200 000 kr · 79.9%</div>
           </div>
         </div>
-
         <div class="rank-row">
-          <div class="rank-num">2</div>
+          <div class="rank-num ">2</div>
           <div>
             <div class="rank-name">Alex Arvidsson</div>
             <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:90.6%"></div></div>
+              <div class="rank-bar"><div class="rank-bar-fill " style="width:90.6%"></div></div>
             </div>
           </div>
           <div class="rank-right">
             <div class="rank-value">724 610 kr</div>
-            <div class="rank-budget">av 800 000 · 90.6% ↑</div>
+            <div class="rank-budget">av 800 000 kr · 90.6%</div>
           </div>
         </div>
-
         <div class="rank-row">
-          <div class="rank-num">3</div>
+          <div class="rank-num ">3</div>
           <div>
             <div class="rank-name">Pål Vireberg</div>
             <div class="rank-bar-wrap">
@@ -851,12 +451,11 @@
           </div>
           <div class="rank-right">
             <div class="rank-value">690 057 kr</div>
-            <div class="rank-budget">av 500 000 · 138% ✓</div>
+            <div class="rank-budget">av 500 000 kr · 138.0% ✓</div>
           </div>
         </div>
-
         <div class="rank-row">
-          <div class="rank-num">4</div>
+          <div class="rank-num ">4</div>
           <div>
             <div class="rank-name">Media Byrå</div>
             <div class="rank-bar-wrap">
@@ -865,38 +464,22 @@
           </div>
           <div class="rank-right">
             <div class="rank-value">160 000 kr</div>
-            <div class="rank-budget">av 100 000 · 160% ✓</div>
+            <div class="rank-budget">av 100 000 kr · 160.0% ✓</div>
           </div>
         </div>
-
         <div class="rank-row">
-          <div class="rank-num">5</div>
+          <div class="rank-num ">5</div>
           <div>
             <div class="rank-name">Sales Partner</div>
             <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:35%"></div></div>
+              <div class="rank-bar"><div class="rank-bar-fill " style="width:35.0%"></div></div>
             </div>
           </div>
           <div class="rank-right">
             <div class="rank-value">35 000 kr</div>
-            <div class="rank-budget">av 100 000 · 35%</div>
+            <div class="rank-budget">av 100 000 kr · 35.0%</div>
           </div>
         </div>
-
-        <div class="rank-row">
-          <div class="rank-num">6</div>
-          <div>
-            <div class="rank-name">Kim Aldén Engström</div>
-            <div class="rank-bar-wrap">
-              <div class="rank-bar"><div class="rank-bar-fill" style="width:0%"></div></div>
-            </div>
-          </div>
-          <div class="rank-right">
-            <div class="rank-value">0 kr</div>
-            <div class="rank-budget">inget marsmål satt</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -907,122 +490,125 @@
       <span class="label label-light">Senaste 5 dagarna</span>
       <h2 class="trend-heading reveal">Vad har hänt?</h2>
 
-      <!-- Idag: 25 mars -->
-      <div class="trend-snapshot reveal">
-        <div class="trend-snapshot-date">Idag · Onsdag 25 mars 2026</div>
+      
+      <div class="trend-snapshot reveal" >
+        <div class="trend-snapshot-date">Igår · Onsdag 25 mars 2026</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">2 569 tkr</div>
+            <div class="tsn-val">2568 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
-            <div class="tsn-delta up">↑ +77 tkr sedan 23 mars</div>
+            <div class="tsn-delta up">↑ +77 tkr vs föregående dag</div>
           </div>
           <div>
-            <div class="tsn-val">3 871 tkr</div>
+            <div class="tsn-val">3870 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
-            <div class="tsn-delta up">↑ +458 tkr sedan 23 mars</div>
+            <div class="tsn-delta up">↑ +457 tkr pipeline</div>
           </div>
           <div>
             <div class="tsn-val">24</div>
             <div class="tsn-lbl">Utgångna offerter</div>
-            <div class="tsn-delta up">→ Oförändrat sedan 23 mars</div>
+            <div class="tsn-delta" style="color:rgba(252,250,238,0.3);">→ oförändrat</div>
           </div>
         </div>
       </div>
 
-      <!-- 23 mars -->
-      <div class="trend-snapshot reveal" style="margin-top: 2px; opacity: 0.85;">
-        <div class="trend-snapshot-date">Söndag 23 mars 2026</div>
+      <div class="trend-snapshot reveal" style="margin-top:2px; opacity:0.85;">
+        <div class="trend-snapshot-date">Måndag 23 mars 2026</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">2 492 tkr</div>
+            <div class="tsn-val">2491 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
-            <div class="tsn-delta up">↑ +197 tkr från 22 mars</div>
+            <div class="tsn-delta up">↑ +197 tkr vs föregående dag</div>
           </div>
           <div>
-            <div class="tsn-val">3 413 tkr</div>
+            <div class="tsn-val">3413 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
+            <div class="tsn-delta down">↓ -76 tkr pipeline</div>
           </div>
           <div>
             <div class="tsn-val">24</div>
             <div class="tsn-lbl">Utgångna offerter</div>
-            <div class="tsn-delta up">↓ −2 (bättre)</div>
+            <div class="tsn-delta up">↓ -2 utgångna</div>
           </div>
         </div>
       </div>
 
-      <!-- 22 mars -->
-      <div class="trend-snapshot reveal" style="margin-top: 2px; opacity: 0.7;">
-        <div class="trend-snapshot-date">Lördag 22 mars 2026</div>
+      <div class="trend-snapshot reveal" style="margin-top:2px; opacity:0.70;">
+        <div class="trend-snapshot-date">Söndag 22 mars 2026</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">2 294 tkr</div>
+            <div class="tsn-val">2294 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
+            <div class="tsn-delta up">↑ +0 tkr vs föregående dag</div>
           </div>
           <div>
-            <div class="tsn-val">3 490 tkr</div>
+            <div class="tsn-val">3490 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
+            <div class="tsn-delta up">↑ +0 tkr pipeline</div>
           </div>
           <div>
             <div class="tsn-val">26</div>
             <div class="tsn-lbl">Utgångna offerter</div>
+            <div class="tsn-delta" style="color:rgba(252,250,238,0.3);">→ oförändrat</div>
           </div>
         </div>
       </div>
 
-      <!-- 21 mars -->
-      <div class="trend-snapshot reveal" style="margin-top: 2px; opacity: 0.55;">
-        <div class="trend-snapshot-date">Fredag 21 mars 2026 · Stort hopp: +1 197 tkr</div>
+      <div class="trend-snapshot reveal" style="margin-top:2px; opacity:0.55;">
+        <div class="trend-snapshot-date">Lördag 21 mars 2026</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">2 294 tkr</div>
+            <div class="tsn-val">2294 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
+            <div class="tsn-delta up">↑ +1197 tkr vs föregående dag</div>
           </div>
           <div>
-            <div class="tsn-val">3 490 tkr</div>
+            <div class="tsn-val">3490 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
+            <div class="tsn-delta up">↑ +0 tkr pipeline</div>
           </div>
           <div>
             <div class="tsn-val">26</div>
             <div class="tsn-lbl">Utgångna offerter</div>
+            <div class="tsn-delta" style="color:rgba(252,250,238,0.3);">→ oförändrat</div>
           </div>
         </div>
       </div>
 
-      <!-- 20 mars -->
-      <div class="trend-snapshot reveal" style="margin-top: 2px; opacity: 0.4;">
-        <div class="trend-snapshot-date">Torsdag 20 mars 2026 · Startpunkt dataserie</div>
+      <div class="trend-snapshot reveal" style="margin-top:2px; opacity:0.40;">
+        <div class="trend-snapshot-date">Fredag 20 mars 2026</div>
         <div class="trend-snapshot-grid">
           <div>
-            <div class="tsn-val">1 097 tkr</div>
+            <div class="tsn-val">1097 tkr</div>
             <div class="tsn-lbl">Intäkter mars (stängda)</div>
+            <div class="tsn-delta" style="color:rgba(252,250,238,0.3);">Startpunkt dataserie</div>
           </div>
           <div>
-            <div class="tsn-val">3 490 tkr</div>
+            <div class="tsn-val">3490 tkr</div>
             <div class="tsn-lbl">Aktivt pipeline-värde</div>
+            
           </div>
           <div>
             <div class="tsn-val">26</div>
             <div class="tsn-lbl">Utgångna offerter</div>
+            
           </div>
         </div>
       </div>
 
-      <!-- Delta-analys -->
-      <div class="trend-day-1 reveal" style="margin-top: 2px; border-color: rgba(61,253,126,0.35); background: rgba(61,253,126,0.04);">
-        <div class="trend-icon">📊</div>
-        <h3 style="color: #3DFD7E;">Trend 20–25 mars · 5 dagar</h3>
+      <div class="trend-analysis reveal" style="margin-top:2px;">
+        <h3>📊 Trend 20–25 mars · 5 dagar</h3>
         <p>
-          Från <strong>1 097 tkr</strong> till <strong>2 569 tkr</strong> på 5 dagar — en ökning på +<strong>1 472 tkr</strong> (134%).
-          Fredagen den 21:a var det starkaste enskilda dagshoppet. Alex Arvidsson stängde deals på helgen (+197 tkr) och idag
-          är pipeline upp ytterligare <strong>+458 tkr</strong> — nytt material har kommit in.
+          Från <strong>1 097 008 kr</strong> till <strong>2 568 940 kr</strong> på 5 dagar —
+          en ökning på +<strong>1 471 932 kr</strong> (134%).
+          Fredagen den 21:a var det starkaste enskilda dagshoppet (+1 197 tkr).
+          Alex och Pål stängde deals under helgen (+197 tkr). Pipeline ökade med +458 tkr den 25:e —
+          nytt material kom in.
           <br><br>
-          Det fattas bara <strong>131 060 kr</strong> till fullt marsmål — det är en enda melanstor deal.
-          Med 6 dagar kvar och ett starkt pipeline på <strong>3,87 Mkr</strong> är det helt realistiskt att slå budget.
-          <br><br>
-          Dataserie dag 5 av 5 — fullständig historik tillgänglig.
+          Det fattas bara <strong>131 060 kr</strong> till fullt marsmål — en enda mellanstor deal.
+          Med 5 dagar kvar och aktivt pipeline på <strong>3.9 Mkr</strong> är det fullt realistiskt att slå budget.
         </p>
       </div>
-
     </div>
   </section>
 
@@ -1033,31 +619,27 @@
       <h2 class="rec-heading reveal">Två saker<br>att göra nu.</h2>
 
       <div class="rec-grid reveal">
-
         <div class="rec-card card-1">
           <div class="rec-num">1</div>
-          <div class="rec-tag">Uppföljning · 2,71 Mkr i spel</div>
-          <div class="rec-title">24 utgångna offerter på 2 712 965 kr väntar på uppföljning</div>
+          <div class="rec-tag">Uppföljning · 2.7 Mkr i spel</div>
+          <div class="rec-title">24 utgångna offerter på 2,712,965 kr väntar på uppföljning</div>
           <p class="rec-body">
-            Ingen av de utgångna offertorna är förlorade — de kan återaktiveras.
-            En systematisk uppringningsrunda kan rädda en stor del av värdet.
-            <strong>Starta idag med de högst värderade — de som legat kortast tid är enklast att återuppväcka.</strong>
-            Rätt timing, rätt tonalitet: ni har momentum att visa upp.
+            Ingen av de utgångna offertorna är förlorade — de kan återaktiveras. En systematisk uppringningsrunda kan rädda en stor del av värdet.
+            <br><br>
+            <strong>Prioritera Brinova (1,027,290 kr) och Identity Media (430,341 kr) — störst potential.</strong>
           </p>
         </div>
 
         <div class="rec-card card-2">
           <div class="rec-num">2</div>
-          <div class="rec-tag">Strategiskt · Momentum</div>
+          <div class="rec-tag">Strategiskt · Slutspurt</div>
           <div class="rec-title">Ni har bra momentum — dags att sikta högre</div>
           <p class="rec-body">
-            Med 95.1% av månadsbudgeten stängd är ni i slutspurten.
-            Det fattas bara 131 060 kr — det är en enda deal.
-            <strong>Fundera på att accelerera prospekteringen mot april redan nu</strong> —
-            en stark marsmånad är det bästa läget att ringa svåra samtal och bygga pipeline för Q2.
+            Med 95.1% av månadsbudgeten stängd är ni på bra spår. Fundera på att accelerera prospekteringen mot nästa månad redan nu — en stark månad är det bästa läget att ringa svåra samtal och driva nya affärer.
+            <br><br>
+            <strong>Det fattas 131 060 kr — det är en enda deal. Ni har 5 dagar på er.</strong>
           </p>
         </div>
-
       </div>
     </div>
   </section>
@@ -1069,7 +651,7 @@
         Tänk på att njuta av <span>resan,</span><br>
         och ha en bra dag!
       </h2>
-      <p class="signoff-sub">Bon · Onsdag 25 mars 2026 · Live data · DOS online ✓</p>
+      <p class="signoff-sub">Bon · Torsdag 26 mars 2026 · Data från 25 mars · DOS tillfälligt offline</p>
     </div>
   </section>
 
@@ -1082,15 +664,13 @@
     (function () {
       'use strict';
 
-      // Datum
-      var days   = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+      var days   = ['S\u00f6ndag','M\u00e5ndag','Tisdag','Onsdag','Torsdag','Fredag','L\u00f6rdag'];
       var months = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
       var now    = new Date();
       var dateStr = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
       document.getElementById('hero-date').textContent = dateStr;
       document.getElementById('footer-date').textContent = dateStr;
 
-      // Reveal on scroll
       var revealEls = document.querySelectorAll('.reveal');
       var revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -1099,7 +679,6 @@
       }, { threshold: 0.1 });
       revealEls.forEach(function (el) { revealObserver.observe(el); });
 
-      // Hero zoom (identisk med template1)
       var heroPin        = document.getElementById('heroPin');
       var heroEye        = document.getElementById('heroEye');
       var heroReveal     = document.getElementById('heroReveal');
@@ -1113,24 +692,15 @@
         var scrollMax = pinH - vh;
         var scrollY   = window.pageYOffset;
         var progress  = Math.min(Math.max(scrollY / scrollMax, 0), 1);
-
-        // Eye zoom: 0–20%
         var zoomProgress = Math.min(progress / 0.20, 1);
         var scale = 1 + zoomProgress * zoomProgress * 14;
         heroEye.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
-
-        // Radial black fade: 10–30%
         var fadeProgress = Math.min(Math.max((progress - 0.10) / 0.20, 0), 1);
         var eased = fadeProgress * fadeProgress;
         heroRadialFade.style.background =
           'radial-gradient(circle at center, #000 ' + Math.round(eased * 45) + '%, transparent ' + Math.round(10 + eased * 90) + '%)';
-
-        // Scroll hint fades immediately
         scrollHint.style.opacity = Math.max(0, 1 - progress * 15);
-
-        // Logo fades in: 32–50%
         heroReveal.style.opacity = Math.max(0, (progress - 0.32) / 0.18);
-
         ticking = false;
       }
 
