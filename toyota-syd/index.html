@@ -83,6 +83,25 @@
       overflow: hidden;
     }
 
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-hero.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.5) 100%);
+    }
+
+    .hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -508,8 +527,9 @@
 
   <!-- ══ HERO ══ -->
   <section class="hero">
+    <div class="hero-bg"></div>
     <div class="hero-logos">
-      <img src="../logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
+      <img src="https://mooood.com/logos/billbords_logotype_offwhite_rgb.png" alt="Billbords">
       <span class="divider">×</span>
       <!-- Toyota wordmark text since no logo asset -->
       <span style="font-size:18px;font-weight:900;letter-spacing:0.04em;color:rgba(255,255,255,0.85);">TOYOTA SYD</span>
@@ -567,7 +587,12 @@
       <div class="concept-group-label">Säsongskoncepter</div>
       <div class="concept-cards">
 
-        <div class="concept-card">
+        <div class="concept-card" style="padding:0;overflow:hidden;">
+          <div style="height:200px;overflow:hidden;position:relative;">
+            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-jul.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%);"></div>
+          </div>
+          <div style="padding:28px 28px 32px;">
           <span class="concept-card-emoji">🎄</span>
           <h3>Hem till dig</h3>
           <p class="tagline">"Oavsett hur långt bort du hamnat — din Toyota tar dig hem."</p>
@@ -578,6 +603,7 @@
             <li>Lokal version per anläggning: "Toyota Malmö hälsar God Jul"</li>
             <li>Social Media: "Vad är ditt julminne i bilen?" → UGC</li>
           </ul>
+          </div>
         </div>
 
         <div class="concept-card">
@@ -592,7 +618,12 @@
           </ul>
         </div>
 
-        <div class="concept-card">
+        <div class="concept-card" style="padding:0;overflow:hidden;">
+          <div style="height:200px;overflow:hidden;position:relative;">
+            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-sommar.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+          </div>
+          <div style="padding:28px 28px 32px;">
           <span class="concept-card-emoji">☀️</span>
           <h3>Din semester börjar i bilen</h3>
           <p class="tagline">"Det är inte destinationen. Det är de fem timmarna dit."</p>
@@ -602,6 +633,7 @@
             <li>"Vart kör du din Toyota i sommar?" — taggbar karta, UGC</li>
             <li>Sommar-Reels med riktiga kunder och deras road trips</li>
           </ul>
+          </div>
         </div>
 
       </div>
@@ -611,7 +643,12 @@
       <div class="concept-group-label">Team &amp; Förtroende</div>
       <div class="concept-cards">
 
-        <div class="concept-card">
+        <div class="concept-card" style="padding:0;overflow:hidden;">
+          <div style="height:200px;overflow:hidden;position:relative;">
+            <img src="https://pub-54cb667dfd3547d5806ae33fef3e81d4.r2.dev/toyota-syd/toyota-team.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);"></div>
+          </div>
+          <div style="padding:28px 28px 32px;">
           <span class="concept-card-emoji">👥</span>
           <h3>Möt din mekaniker</h3>
           <p class="tagline">"Du vet vad Toyota Syd säljer. Men vet du vem som servar din bil?"</p>
@@ -622,6 +659,7 @@
             <li>Ny person varje vecka. Lever sedan på LinkedIn och Instagram.</li>
             <li>V1-4: Verkstad · V5-8: Sälj · V9-12: Kundtjänst · V13: Ledning</li>
           </ul>
+          </div>
         </div>
 
         <div class="concept-card">
@@ -774,7 +812,7 @@
   <!-- ══ FOOTER ══ -->
   <footer class="site-footer">
     <div>
-      <img src="../logos/billbords_logotype_white_rgb.png" alt="Billbords">
+      <img src="https://mooood.com/logos/billbords_logotype_white_rgb.png" alt="Billbords">
       <p style="margin-top:8px">Billbords × Toyota Syd — Kommersiellt Partnerskap 2026</p>
     </div>
     <p>Powered by <a href="https://mooood.com" style="color:inherit">mooood.com</a></p>
